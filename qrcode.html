@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUAXIN QR Code</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        canvas {
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: white;
+            background-color: #0056b3;
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+        }
+        .url {
+            color: white;
+            background-color: #0056b3;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+            margin: 10px 0 0 0;
+            font-size: 1em;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HUAXIN</h1>
+        <canvas id="qrcode"></canvas>
+        <div class="url">https://huaxin-membrane.github.io/huaxin-membrane/</div>
+    </div>
 
+    <script>
+        // Generate QR code
+        QRCode.toCanvas(document.getElementById('qrcode'), 'https://huaxin-membrane.github.io/huaxin-membrane/', {
+            width: 300,
+            margin: 2,
+            color: {
+                dark: '#0056b3', // Blue modules
+                light: '#ffffff'  // White background
+            }
+        }, function (error) {
+            if (error) console.error(error);
+            console.log('QR code generated!');
+        });
+    </script>
+</body>
+</html>
