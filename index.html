@@ -121,6 +121,23 @@ h2.sec{font-size:clamp(28px,4vw,40px);color:var(--ink);font-weight:700;margin:12
 .pb-txt{font-size:14.5px;color:#C7D6E8;line-height:1.65;border-left:1px solid rgba(255,255,255,.15);padding-left:24px}
 .pb-txt b{color:#5EEAD4}
 
+/* ============ HOW IT WORKS — VIDEO ============ */
+.video-frame{position:relative;max-width:920px;margin:0 auto;aspect-ratio:16/9;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,#0A2344,#123B71 60%,#1E7BE0);box-shadow:0 20px 50px rgba(9,38,66,.25)}
+.video-frame video,.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#020B16;object-fit:contain}
+.vph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#B7C9DE;text-align:center;padding:24px;cursor:default;z-index:2}
+.vph .play{width:84px;height:84px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);transition:.25s}
+.vph:hover .play{transform:scale(1.07);background:rgba(255,255,255,.2)}
+.vph .play svg{width:30px;height:30px;color:#fff;margin-left:5px}
+.vph b{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#5EEAD4;font-weight:600}
+.vph span{font-size:13.5px;max-width:520px;line-height:1.65}
+.vplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;background:rgba(8,28,54,.25);transition:.25s}
+.vplay:hover{background:rgba(8,28,54,.08)}
+.vplay .play{width:88px;height:88px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px rgba(72,88,240,.5);transition:.25s}
+.vplay:hover .play{transform:scale(1.08)}
+.vplay .play svg{width:32px;height:32px;color:#fff;margin-left:5px}
+.video-cap{font-size:12.5px;color:var(--muted);text-align:center;margin-top:14px}
+@media(max-width:600px){.vph .play,.vplay .play{width:62px;height:62px}.vph span{font-size:12px}.vph .play svg,.vplay .play svg{width:24px;height:24px}}
+
 /* ============ PERFORMANCE / CHARTS ============ */
 .perf-grid{display:grid;grid-template-columns:1.42fr 1fr;gap:20px}
 .perf-grid2{display:grid;grid-template-columns:1fr 1.42fr;gap:20px;margin-top:20px}
@@ -353,6 +370,7 @@ footer{background:#050F1F;color:#7E93AC;padding:56px 0 30px}
       <span class="brand-t"><b>HUAXIN</b><small>Innovation for water</small></span>
     </a>
     <div class="nav-links" id="navLinks">
+      <a href="#howitworks">How It Works</a>
       <a href="#performance">Field Data</a>
       <a href="#cases">Cases</a>
       <a href="#products">Products</a>
@@ -466,6 +484,26 @@ footer{background:#050F1F;color:#7E93AC;padding:56px 0 30px}
   </div>
 </section>
 
+<!-- ================= HOW IT WORKS — VIDEO ================= -->
+<section id="howitworks" style="background:linear-gradient(180deg,#fff,var(--bg))">
+  <div class="wrap">
+    <div class="sec-head rv" style="text-align:center">
+      <span class="kicker">Technology in Motion</span>
+      <h2 class="sec">See How a HUAXIN Membrane Works</h2>
+      <p class="lead" style="margin:0 auto">Inside every spiral-wound element, feed water sweeps across the membrane surface while rejected salts and particles are carried away with the concentrate — only pure permeate spirals into the central collection tube. This is why HUAXIN elements stay clean where dead-end filters fail.</p>
+    </div>
+    <div class="video-frame rv" id="videoFrame">
+      <!-- Placeholder: auto-hides as soon as a video is configured in VIDEO_CFG (top of the script) -->
+      <div class="vph" id="videoPh">
+        <div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+        <b>Video Placeholder · 16:9</b>
+        <span id="videoPhMsg">No video configured yet. Open this file, find VIDEO_CFG near the top of the script, and set "mp4", "youtube" or "vimeo" — the player mounts automatically.</span>
+      </div>
+    </div>
+    <p class="video-cap">Spiral-wound element cutaway — feed spacer, membrane leaves and central permeate collection tube.</p>
+  </div>
+</section>
+
 <!-- ================= PERFORMANCE ================= -->
 <section id="performance" class="sec-gray">
   <div class="wrap">
@@ -480,7 +518,7 @@ footer{background:#050F1F;color:#7E93AC;padding:56px 0 30px}
         <div class="ch" id="chA"></div>
       </div>
       <div class="chartcard rv" style="--d:.1s">
-        <div class="ct-h"><h4>Scale Accumulation — Element Weight</h4><span class="ct-s">Before / after 525-day CaSO₄ scaling trial (Stage 2) — no effective scale-control available</span></div>
+        <div class="ct-h"><h4>Scale Accumulation — Δ Weight Gained per 8&Prime; Element</h4><span class="ct-s">525-day CaSO₄ scaling trial (Stage 2) · Δ = final − initial weight · HUAXIN retains ≈28× less fouling</span></div>
         <div class="ch" id="chB"></div>
       </div>
     </div>
@@ -497,7 +535,7 @@ footer{background:#050F1F;color:#7E93AC;padding:56px 0 30px}
             <tr><td><b>Day-one salt rejection</b><small>HX-SW standard test conditions</small></td><td class="num">99.7%</td><td class="num hx">99.7%</td><td><span class="badge par">PAR — best case matched</span></td></tr>
             <tr><td><b>670-day avg. desalination</b><small>no chemical pretreatment · CaSO₄ service</small></td><td class="num">98.17%</td><td class="num hx">99.53%</td><td><span class="badge win">HUAXIN +1.36 pts</span></td></tr>
             <tr><td><b>After aggressive CIP</b><small>repeated acid / alkali cleaning</small></td><td class="num fail">11.4% destroyed</td><td class="num hx">Full recovery</td><td><span class="badge win">HUAXIN — CIP-proof</span></td></tr>
-            <tr><td><b>Scale accumulation</b><small>8&Prime; element · 525 days</small></td><td class="num">+22.4 kg</td><td class="num hx">+0.8 kg</td><td><span class="badge win">~28× less scale</span></td></tr>
+            <tr><td><b>Scale accumulation</b><small>8&Prime; element · Δ weight after 525 days</small></td><td class="num">+22.4 kg</td><td class="num hx">+0.8 kg</td><td><span class="badge win">~28× less scale</span></td></tr>
             <tr><td><b>vs Toray TM820V</b><small>ZLD reclaimed water · parallel trial</small></td><td class="num">99.05%</td><td class="num hx">99.09%</td><td><span class="badge win">Marginally higher</span></td></tr>
             <tr><td><b>Water flux</b><small>55 bar · 22°C · 32 g/L NaCl</small></td><td class="num">1.45 LMH/bar</td><td class="num hx">1.55 LMH/bar</td><td><span class="badge win">HUAXIN +6.9%</span></td></tr>
           </tbody>
@@ -702,7 +740,7 @@ footer{background:#050F1F;color:#7E93AC;padding:56px 0 30px}
       </div>
       <div>
         <h5>Company</h5>
-        <a href="#performance">Field Performance Data</a><a href="#cases">Case Studies</a><a href="#roi">Savings Calculator</a><a href="#about">About HUAXIN</a><a href="#contact">Contact Sales</a>
+        <a href="#howitworks">How It Works — Video</a><a href="#performance">Field Performance Data</a><a href="#cases">Case Studies</a><a href="#roi">Savings Calculator</a><a href="#about">About HUAXIN</a><a href="#contact">Contact Sales</a>
       </div>
     </div>
     <div class="f-bot">
@@ -722,6 +760,76 @@ const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 let toastT;
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3400);}
  $('#year').textContent=new Date().getFullYear();
+
+/* ================================================================
+   ============ VIDEO — EDIT VIDEO_CFG BELOW TO ADD YOURS =========
+   ================================================================
+   OPTION A (recommended): self-hosted MP4.
+     1. Save your video as e.g.  huaxin-membrane-working.mp4
+        in the SAME folder as this HTML file.
+     2. Set:  mp4: 'huaxin-membrane-working.mp4'
+     3. Optional: set poster: 'huaxin-video-poster.jpg' (image shown before play).
+   OPTION B: YouTube. Set ONLY the video ID, e.g.  youtube: 'aBcD123xYz'
+   OPTION C: Vimeo.  Set ONLY the numeric ID, e.g. vimeo: '76979871'
+   The placeholder hides automatically once any option is set.
+   Recommended MP4 spec: H.264 · 1920x1080 · 45–90 s. */
+const VIDEO_CFG = {
+  mp4: 'huaxin-membrane-ed.mp4',       // <-- e.g. 'huaxin-membrane-working.mp4'
+  poster: '',    // <-- optional, e.g. 'huaxin-video-poster.jpg'
+  youtube: '',   // <-- e.g. 'aBcD123xYz'  (ID only, not the full URL)
+  vimeo: ''      // <-- e.g. '76979871'    (ID only)
+};
+(function initVideo(){
+  const frame = document.getElementById('videoFrame');
+  if(!frame) return;
+  const ph  = document.getElementById('videoPh');
+  const msg = document.getElementById('videoPhMsg');
+  const hidePh   = () => { if(ph) ph.style.display = 'none'; };
+  const showErr  = (m) => { if(ph) ph.style.display = 'flex'; if(msg) msg.textContent = m; };
+
+  if(VIDEO_CFG.mp4){
+    const v = document.createElement('video');
+    v.controls = true; v.preload = 'metadata';
+    v.setAttribute('playsinline',''); v.playsInline = true;
+    if(VIDEO_CFG.poster) v.poster = VIDEO_CFG.poster;
+    const src = document.createElement('source');
+    src.src = VIDEO_CFG.mp4; src.type = 'video/mp4';
+    v.appendChild(src);
+    // If the file is missing or can't be decoded, tell the user instead of failing silently
+    src.addEventListener('error', () => {
+      const o = frame.querySelector('.vplay'); if(o) o.remove();
+      showErr('Video file not found: "' + VIDEO_CFG.mp4 + '". Make sure the file is in the same folder as this HTML file and the name matches exactly (case-sensitive on most web servers).');
+    });
+    // One-click start overlay (removed as soon as playback begins)
+    const ov = document.createElement('div');
+    ov.className = 'vplay';
+    ov.innerHTML = '<div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>';
+    ov.addEventListener('click', () => {
+      const p = v.play();
+      if(p && p.catch) p.catch(()=>{ v.controls = true; });
+      ov.remove();
+    });
+    v.addEventListener('play', () => { const o = frame.querySelector('.vplay'); if(o) o.remove(); });
+    frame.appendChild(v);
+    frame.appendChild(ov);
+    hidePh();
+  } else if(VIDEO_CFG.youtube){
+    const f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + VIDEO_CFG.youtube + '?rel=0';
+    f.title = 'How the HUAXIN membrane works';
+    f.loading = 'lazy'; f.allowFullscreen = true;
+    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    frame.appendChild(f); hidePh();
+  } else if(VIDEO_CFG.vimeo){
+    const f = document.createElement('iframe');
+    f.src = 'https://player.vimeo.com/video/' + VIDEO_CFG.vimeo + '?title=0&byline=0&portrait=0';
+    f.title = 'How the HUAXIN membrane works';
+    f.loading = 'lazy'; f.allowFullscreen = true;
+    f.allow = 'autoplay; fullscreen; picture-in-picture';
+    frame.appendChild(f); hidePh();
+  }
+})();
+/* ============ END VIDEO ============ */
 
 /* ============ PRODUCT DATA (from official HUAXIN product manual) ============ */
 const COND_BASE=[['Max. feed flow','16 gpm (4040) · 75 gpm (8040)'],['Max. feed temperature','45 °C'],['Max. feed SDI','5'],['Max. free chlorine','<0.1 ppm'],['Continuous pH range','2–11'],['Short-term cleaning pH (30 min)','1–13'],['Max. ΔP per element','15 psi (0.10 MPa)'],['Element sizes','4040 / 8040 spiral-wound']];
@@ -916,7 +1024,7 @@ function openStep3(series){
   setStep(3); wShow('wstep3');
 }
 function showResult(sizeKey){
-  setStep(4); 
+  setStep(4);
   const p=wSeries==='custom'?null:PRODUCTS[wSeries];
   let model,feat,desc;
   if(wSeries==='custom'){model=CUSTOM;feat=CUSTOM_FEAT;desc=CUSTOM.desc;}
@@ -1040,10 +1148,7 @@ function initCharts(){
        markLine:{silent:true,symbol:'none',lineStyle:{color:'#E5484D',type:'dashed',width:1},label:{formatter:'98% operating standard',color:'#E5484D',fontSize:10,position:'insideEndTop'},data:[{yAxis:98}]}},
       {name:'Reference membrane',type:'line',smooth:true,symbol:'none',data:ref,lineStyle:{width:2,color:'#94A3B8',type:'dashed'},itemStyle:{color:'#94A3B8'}}
     ]});
-
-
-  
- /* B — scale accumulation: Δ weight only */
+  /* B — scale accumulation: Δ weight only */
   mk('chB',{
     grid:{left:56,right:20,top:36,bottom:28},
     tooltip:{trigger:'item',
@@ -1068,10 +1173,6 @@ function initCharts(){
       ]
     }]
   });
-
-
-
-
   /* C — permeate conductivity floating bars */
   mk('chC',{
     grid:{left:54,right:16,top:30,bottom:28},
