@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="description" content="HUAXIN Membrane digital product manual and datasheets: RO, NF, MBR and UF water treatment membranes.">
+<meta name="theme-color" content="#0F172A">
+<title>HUAXIN Membrane — Product Manual &amp; Datasheets</title>
+<!--
+  SOURCE NOTES (for the editor of this file)
+  1. Source: "Product Manual of HUAXIN.pdf" - 14 PDF pages, each a two-page spread (printed pages 01-26).
+     All nine product lines have specification tables in the source (HX-SW and HX-HQ are on printed pages 15-16).
+  2. Corrections applied to obvious source errors:
+     - BW-4040-100 and BWFR-4040-100 membrane area: source prints 8.3 m2; 100 ft2 = 9.3 m2 (matches every other 100 ft2 model).
+     - HX-MBR-2028, 1.0 mm column: source prints 480 m2; every other row is 1.5x the 2.0 mm value, so 560 -> 840 (footnoted on the datasheet).
+     - HQ-4040-100 permeate flow: source prints "2200 (8.3)", but 2,200 GPD = 8.3 m3/d and 9.1 m3/d = 2,400 GPD. Shown exactly as printed and footnoted.
+     - Element diameter: source says "feet"; 8040 / 4040 are 8.0 / 4.0 inches.
+     - Case 1 operating pressure is printed as "kg"; shown as kgf/cm2 (footnoted).
+     - UF membrane-area row has no unit in the source; shown as m2.
+     - LP test condition printed "1.500 ppm NaCl"; shown as 1,500 ppm.
+     - Icon label "Extremely high Dhemical Resistance" corrected to Chemical; the truncated label "Extremely high Resistance" was omitted.
+  3. No product-level certifications appear in the source; datasheets say so instead of inventing any.
+  4. Responsive design: fluid grids with min() so nothing can exceed the viewport (320px and up), a swipe-able
+     one-row navigation strip on phones, horizontally scrollable spec tables with edge shadows, 44px touch targets,
+     safe-area padding for notched phones, and a print stylesheet (A4).
+-->
+<style>
+/* ==========================================================================
+   1. DESIGN TOKENS
+   ========================================================================== */
+:root{
+  --pearl:#F8FAFC;
+  --white:#FFFFFF;
+  --obsidian:#0F172A;
+  --slate:#475569;
+  --teal:#0D9488;
+  --silver:#E2E8F0;
+  --teal-deep:#0F766E;
+  --teal-tint:#F0FDFA;
+  --teal-soft:#CCFBF1;
+  --slate-soft:#94A3B8;
+  --shadow:0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.06);
+  --shadow-lg:0 10px 15px -3px rgba(15,23,42,.12), 0 4px 6px -4px rgba(15,23,42,.08);
+  --radius:8px;
+  --nav-h:64px;
+  --gutter:24px;
+  --font:Inter,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Roboto,Arial,sans-serif;
+  color-scheme:light;
+}
+
+/* ==========================================================================
+   2. BASE
+   ========================================================================== */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 16px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--pearl);color:var(--obsidian);
+  font-family:var(--font);font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:clip;overflow-wrap:break-word;
+}
+img,svg{max-width:100%}
+h1,h2,h3,h4{margin:0;line-height:1.15;letter-spacing:-.02em;font-weight:800;color:var(--obsidian)}
+p{margin:0 0 1em}
+ul,ol,dl,dd{margin:0;padding:0}
+a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(13,148,136,.3);transition:color .15s,border-color .15s}
+a:hover{color:var(--teal-deep);border-bottom-color:currentColor}
+a:focus-visible{outline:3px solid rgba(13,148,136,.45);outline-offset:3px;border-radius:3px}
+.skip{position:absolute;left:-9999px;top:8px;background:var(--obsidian);color:#fff;padding:10px 16px;border-radius:var(--radius);z-index:100;border:none}
+.skip:focus{left:8px}
+.container{max-width:1120px;margin:0 auto;padding:0 max(var(--gutter),env(safe-area-inset-right)) 0 max(var(--gutter),env(safe-area-inset-left))}
+.muted{color:var(--slate)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ==========================================================================
+   3. NAVIGATION
+   ========================================================================== */
+.site-nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);-webkit-backdrop-filter:saturate(180%) blur(12px);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--silver)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;height:var(--nav-h)}
+.site-nav nav{min-width:0}
+.brand{display:flex;align-items:center;gap:10px;flex:none;color:var(--obsidian);border:none;font-weight:800;letter-spacing:.06em;font-size:1.05rem;line-height:1.2}
+.brand:hover{color:var(--obsidian)}
+.brand svg{width:30px;height:30px;flex:none}
+.brand small{display:block;font-weight:500;letter-spacing:.02em;color:var(--slate);font-size:.68rem}
+.nav-links{display:flex;gap:4px;list-style:none;justify-content:flex-end}
+.nav-links li{flex:none}
+.nav-links a{display:block;padding:8px 12px;border-radius:6px;border:none;color:var(--slate);font-size:.88rem;font-weight:600;white-space:nowrap}
+.nav-links a:hover{background:var(--teal-tint);color:var(--teal-deep)}
+.nav-links a.cta{background:var(--teal);color:#fff}
+.nav-links a.cta:hover{background:var(--teal-deep);color:#fff}
+
+/* ==========================================================================
+   4. COVER
+   ========================================================================== */
+.cover{position:relative;overflow:hidden;background:var(--obsidian);color:#fff;padding:104px 0 96px;
+  background-image:
+    radial-gradient(900px 480px at 85% -10%,rgba(13,148,136,.45),transparent 60%),
+    radial-gradient(700px 420px at -5% 110%,rgba(13,148,136,.28),transparent 60%)}
+.cover-inner{position:relative;z-index:2}
+.cover-brand{display:flex;align-items:center;gap:14px;margin-bottom:64px}
+.cover-brand svg{width:46px;height:46px;flex:none}
+.cover-brand b{display:block;font-size:1.5rem;letter-spacing:.14em;font-weight:800}
+.cover-brand span{font-size:.82rem;color:var(--silver);letter-spacing:.04em}
+.eyebrow-light{font-size:.8rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--silver);margin-bottom:18px}
+.cover h1{color:#fff;font-size:clamp(2.4rem,8vw,5.2rem);font-weight:800;letter-spacing:-.035em;line-height:1.02}
+.cover h1 em{font-style:normal;color:#fff;background:linear-gradient(transparent 82%,var(--teal) 82%)}
+.cover-sub{font-size:clamp(1.1rem,2.4vw,1.55rem);color:var(--silver);margin:20px 0 14px;font-weight:500}
+.cover-desc{max-width:620px;color:var(--silver);font-size:1.05rem}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin:36px 0 56px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;min-height:48px;border-radius:var(--radius);font-weight:700;font-size:1rem;line-height:1.3;text-align:center;white-space:normal;max-width:100%;border:1px solid transparent;transition:transform .15s,box-shadow .15s,background .15s}
+.btn-light{background:#fff;color:var(--obsidian)}
+.btn-light:hover{color:var(--obsidian);box-shadow:var(--shadow-lg)}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(226,232,240,.45)}
+.btn-ghost:hover{color:#fff;border-color:#fff;background:rgba(255,255,255,.06)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:0;margin:0;max-width:820px;border-top:1px solid rgba(226,232,240,.25)}
+.cover-facts div{padding:22px 20px 0 0;min-width:0}
+.cover-facts dt{font-size:2.1rem;font-weight:800;line-height:1;color:#fff;letter-spacing:-.02em}
+.cover-facts dd{margin:8px 0 0;font-size:.85rem;color:var(--silver)}
+.cover-waves{position:absolute;left:0;right:0;bottom:0;width:100%;height:300px;opacity:.55;z-index:1;pointer-events:none}
+
+/* ==========================================================================
+   5. SECTIONS
+   ========================================================================== */
+.section{padding:88px 0}
+.section.alt{background:var(--white);border-top:1px solid var(--silver);border-bottom:1px solid var(--silver)}
+.section-head{max-width:760px;margin-bottom:44px}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--teal);flex:none}
+.section-head h2{font-size:clamp(1.8rem,4.4vw,2.9rem)}
+.lead{font-size:clamp(1.02rem,2.2vw,1.15rem);color:var(--slate);margin-top:16px}
+.subhead{font-size:clamp(1.2rem,2.6vw,1.35rem);margin:56px 0 8px}
+.subhead+p{color:var(--slate);max-width:720px}
+.grid{display:grid;gap:20px}
+.grid>*{min-width:0}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+.card{background:var(--white);border:1px solid var(--silver);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
+.card h3{font-size:1.2rem;margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+.card.accent{border-top:3px solid var(--teal)}
+
+/* Stat cards */
+.stats-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.stat{background:var(--white);border:1px solid var(--silver);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px}
+.stat b{display:block;font-size:clamp(1.7rem,4vw,2.3rem);line-height:1;color:var(--teal);letter-spacing:-.03em;font-weight:800}
+.stat span{display:block;margin-top:10px;color:var(--slate);font-size:.92rem}
+
+/* How-to-use strip */
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:16px;margin-top:28px}
+.how div{background:var(--teal-tint);border:1px solid var(--teal-soft);border-radius:var(--radius);padding:18px 20px;font-size:.93rem;color:var(--slate)}
+.how b{display:block;color:var(--obsidian);margin-bottom:4px}
+
+/* ==========================================================================
+   6. TABLE OF CONTENTS
+   ========================================================================== */
+.toc-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px}
+.toc-card{background:var(--white);border:1px solid var(--silver);border-radius:var(--radius);box-shadow:var(--shadow);padding:32px}
+.toc-card h3{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.toc-card .toc-title{font-size:1.5rem;font-weight:800;margin-bottom:18px}
+.toc-list{list-style:none}
+.toc-list li{border-top:1px solid var(--silver)}
+.toc-list li:first-child{border-top:none}
+.toc-list a{display:flex;align-items:baseline;gap:16px;padding:14px 6px;min-height:48px;border:none;color:var(--obsidian);font-weight:700;border-radius:6px}
+.toc-list a:hover{background:var(--teal-tint);color:var(--teal-deep)}
+.toc-list .n{font-size:.85rem;color:var(--teal);font-weight:800;min-width:26px;font-variant-numeric:tabular-nums}
+.toc-list .d{display:block;font-weight:500;color:var(--slate);font-size:.88rem}
+.toc-group{font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin:20px 0 4px}
+.toc-group:first-of-type{margin-top:0}
+.toc-list.products a{padding:11px 6px}
+.toc-list.products .code{min-width:96px;flex:none;color:var(--teal);font-weight:800}
+.toc-list.products .name{font-weight:600;color:var(--obsidian)}
+.toc-list.products a:hover .code{color:var(--teal-deep)}
+
+/* ==========================================================================
+   7. ABOUT / TIMELINE / HONORS
+   ========================================================================== */
+.two-col{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;align-items:start}
+.pull{border-left:4px solid var(--teal);padding:6px 0 6px 22px;font-size:1.12rem;color:var(--obsidian);font-weight:600;margin:26px 0}
+.timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:40px}
+.tl-item{position:relative;padding-top:26px;border-top:2px solid var(--silver)}
+.tl-item::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 5px var(--teal-soft)}
+.tl-item b{display:block;font-size:1.15rem;font-weight:800}
+.tl-item span{color:var(--slate);font-size:.93rem}
+.honors{list-style:none;display:grid;gap:12px;margin-top:16px}
+.honors li{display:flex;gap:12px;align-items:flex-start;color:var(--slate);font-size:.95rem}
+.honors li::before{content:"";flex:none;width:10px;height:10px;margin-top:.5em;border-radius:50%;background:var(--teal)}
+.partners{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border:1px solid var(--silver);border-radius:999px;background:var(--pearl);color:var(--slate);font-size:.83rem;font-weight:600}
+.chip.teal{background:var(--teal-tint);border-color:var(--teal-soft);color:var(--teal-deep)}
+
+/* ==========================================================================
+   8. TECHNOLOGY
+   ========================================================================== */
+.pillar{position:relative;padding-top:34px}
+.pillar .idx{position:absolute;top:-16px;left:24px;width:34px;height:34px;border-radius:8px;background:var(--teal);color:#fff;display:grid;place-items:center;font-weight:800;box-shadow:var(--shadow)}
+.badges{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.badge{display:flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--silver);border-radius:var(--radius);padding:12px 18px;font-weight:700;font-size:.92rem;box-shadow:var(--shadow)}
+.badge::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--teal)}
+
+/* ==========================================================================
+   9. APPLICATIONS
+   ========================================================================== */
+.app-card{display:flex;flex-direction:column;gap:12px}
+.app-ico{width:52px;height:52px;border-radius:var(--radius);background:var(--teal-tint);border:1px solid var(--teal-soft);color:var(--teal-deep);display:grid;place-items:center;font-weight:800;font-size:.82rem;letter-spacing:.04em}
+.app-card h3{margin:0}
+.app-card p{color:var(--slate);font-size:.95rem;margin:0}
+.related{margin-top:auto;padding-top:14px;border-top:1px solid var(--silver);font-size:.85rem;color:var(--slate)}
+.related a{display:inline-block;margin-right:6px;padding:6px 4px;white-space:nowrap}
+
+/* ==========================================================================
+   10. PRODUCT OVERVIEW CARDS
+   ========================================================================== */
+.family-label{display:flex;align-items:center;gap:14px;margin:48px 0 18px;font-size:.8rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
+.family-label::after{content:"";flex:1;height:1px;background:var(--silver)}
+.family-label:first-of-type{margin-top:8px}
+.pcard{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--silver);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;transition:transform .15s,box-shadow .15s}
+.pcard .tag{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.pcard h3{font-size:1.55rem;margin:6px 0 2px}
+.pcard h3 a{border:none;color:var(--obsidian)}
+.pcard h3 a:hover{color:var(--teal)}
+.pcard .full{color:var(--slate);font-size:.9rem;font-weight:600;margin-bottom:14px}
+.pcard p.sum{color:var(--slate);font-size:.95rem}
+.pstats{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 18px}
+.pcard .go{display:inline-block;margin-top:auto;padding:8px 0;font-size:.92rem;border:none}
+.pcard .go::after{content:" →"}
+
+/* ==========================================================================
+   11. TABLES  (scroll horizontally on small screens, with edge shadows)
+   ========================================================================== */
+.table-wrap{
+  overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+  border:1px solid var(--silver);border-radius:var(--radius);box-shadow:var(--shadow);
+  background-color:var(--white);
+  background-image:
+    linear-gradient(to right,var(--white),var(--white)),
+    linear-gradient(to right,var(--white),var(--white)),
+    linear-gradient(to right,rgba(15,23,42,.22),rgba(15,23,42,0)),
+    linear-gradient(to left,rgba(15,23,42,.22),rgba(15,23,42,0));
+  background-position:left center,right center,left center,right center;
+  background-repeat:no-repeat;
+  background-size:24px 100%,24px 100%,14px 100%,14px 100%;
+  background-attachment:local,local,scroll,scroll;
+}
+table.spec{width:100%;border-collapse:collapse;font-size:.92rem}
+table.spec.wide{min-width:680px}
+.spec caption{caption-side:top;text-align:left;padding:14px 18px;font-weight:700;color:var(--obsidian);border-bottom:1px solid var(--silver)}
+.spec th{background:var(--obsidian);color:#fff;text-align:left;padding:12px 16px;font-weight:700;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.spec td{padding:12px 16px;border-top:1px solid var(--silver);vertical-align:top}
+.spec tbody tr:nth-child(even){background:rgba(15,23,42,.03)}
+.spec td.n,.spec th.n{text-align:right;font-variant-numeric:tabular-nums}
+.spec td.k{font-weight:600;color:var(--slate);width:46%}
+.spec td b{color:var(--obsidian)}
+.spec td.hl{font-weight:800;color:var(--teal-deep)}
+.spec th.group{text-align:center;background:var(--teal-deep)}
+.table-note{font-size:.84rem;color:var(--slate);margin:12px 2px 0}
+.table-note ol,.table-note ul{margin:6px 0 0 18px;padding:0}
+
+/* ==========================================================================
+   12. SELECTION GUIDE
+   ========================================================================== */
+.decoder{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px;margin:22px 0 28px}
+.decoder .seg{flex:1 1 170px;min-width:0;background:var(--white);border:1px solid var(--silver);border-top:3px solid var(--teal);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.decoder code{display:block;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:1.35rem;font-weight:800;color:var(--obsidian)}
+.decoder .lbl{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--teal);margin:6px 0 4px}
+.decoder p{margin:0;color:var(--slate);font-size:.88rem}
+.decoder i{align-self:center;font-style:normal;font-weight:800;color:var(--slate-soft);font-size:1.4rem}
+
+/* ==========================================================================
+   13. CASES / CHARTS
+   ========================================================================== */
+.chart{background:var(--white);border:1px solid var(--silver);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;min-width:0}
+.chart h4{font-size:1.02rem;margin-bottom:2px}
+.chart .ctx{color:var(--slate);font-size:.88rem;margin-bottom:16px}
+.chart .ctx b{color:var(--obsidian)}
+.chart .sub{font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin:16px 0 8px}
+.bar-row{display:grid;grid-template-columns:116px minmax(0,1fr) 64px;align-items:center;gap:12px;font-size:.88rem;margin-bottom:8px}
+.bar-track{height:12px;background:var(--silver);border-radius:999px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:999px;background:var(--teal)}
+.bar-fill.alt{background:var(--slate-soft)}
+.bar-row b{text-align:right;font-variant-numeric:tabular-nums}
+.chart .scale{font-size:.78rem;color:var(--slate);margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--silver)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.84rem;color:var(--slate);margin:0 0 18px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{width:12px;height:12px;border-radius:3px;background:var(--teal)}
+.legend i.alt{background:var(--slate-soft)}
+.case{background:var(--white);border:1px solid var(--silver);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:28px}
+.case-head{padding:26px 32px;border-bottom:1px solid var(--silver);background:linear-gradient(180deg,var(--teal-tint),#fff)}
+.case-head .tag{font-size:.74rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+.case-head h3{font-size:clamp(1.2rem,3vw,1.5rem);margin-top:6px}
+.case-body{padding:28px 32px;display:grid;gap:28px}
+.case-body>*{min-width:0}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px 28px;margin:0}
+.meta div{border-left:3px solid var(--teal-soft);padding-left:14px;min-width:0}
+.meta dt{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--slate)}
+.meta dd{margin:2px 0 0;font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:14px}
+.kpi{background:var(--pearl);border:1px solid var(--silver);border-radius:var(--radius);padding:16px 18px;min-width:0}
+.kpi b{display:block;font-size:clamp(1.35rem,3.4vw,1.8rem);letter-spacing:-.02em;line-height:1.1;color:var(--teal-deep);font-weight:800;overflow-wrap:anywhere}
+.kpi.alt b{color:var(--slate)}
+.kpi span{display:block;font-size:.84rem;color:var(--slate);margin-top:6px}
+.narr{color:var(--slate);margin:0;max-width:880px}
+.narr strong{color:var(--obsidian)}
+
+/* ==========================================================================
+   14. CONTACT
+   ========================================================================== */
+.contact{background:var(--obsidian);color:#fff;border-radius:var(--radius);padding:44px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:36px;box-shadow:var(--shadow-lg);background-image:radial-gradient(520px 260px at 100% 0,rgba(13,148,136,.4),transparent 60%)}
+.contact h2{color:#fff;font-size:clamp(1.6rem,4vw,2rem)}
+.contact p{color:var(--silver)}
+.contact dl{display:grid;gap:14px;margin:0}
+.contact dt{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--silver)}
+.contact dd{margin:2px 0 0;color:#fff;font-weight:600;overflow-wrap:anywhere}
+.contact a{color:#fff;border-bottom:1px solid rgba(255,255,255,.4)}
+.contact a:hover{color:#fff;border-bottom-color:#fff}
+.contact .btn{border-bottom:1px solid transparent}
+
+/* ==========================================================================
+   15. DATASHEETS
+   ========================================================================== */
+.part-head{text-align:left;padding:96px 0 40px}
+.part-head .eyebrow{margin-bottom:16px}
+.part-head h2{font-size:clamp(2rem,5vw,3.4rem)}
+.ds-index{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px;margin-top:32px}
+.ds-index a{display:flex;gap:12px;align-items:baseline;padding:14px 18px;min-height:52px;background:var(--white);border:1px solid var(--silver);border-radius:var(--radius);box-shadow:var(--shadow);color:var(--obsidian)}
+.ds-index a:hover{border-color:var(--teal);color:var(--teal-deep)}
+.ds-index b{color:var(--teal);min-width:84px;flex:none}
+.ds-index span{font-weight:500;color:var(--slate);font-size:.88rem}
+
+.datasheet{background:var(--white);border:1px solid var(--silver);border-radius:var(--radius);box-shadow:var(--shadow-lg);margin:0 0 56px;overflow:hidden}
+.ds-top,.ds-foot{display:flex;align-items:center;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;padding:8px 40px;background:var(--pearl)}
+.ds-top{border-bottom:1px solid var(--silver)}
+.ds-foot{border-top:1px solid var(--silver)}
+.back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;border:none;font-size:.9rem}
+.ds-count{font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.ds-pn{display:flex;gap:6px 20px;flex-wrap:wrap;font-size:.88rem}
+.ds-pn a{display:inline-flex;align-items:center;min-height:44px;border:none}
+.ds-hero{padding:40px 40px 36px;color:#fff;background:linear-gradient(120deg,#0F172A 0%,#0F172A 40%,#0F3D46 100%);position:relative;overflow:hidden}
+.ds-hero::after{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(13,148,136,.55),transparent 65%)}
+.ds-hero>*{position:relative;z-index:1}
+.ds-hero .tag{font-size:.76rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--silver)}
+.ds-hero h2{color:#fff;font-size:clamp(2.2rem,6vw,3.6rem);margin:8px 0 4px;letter-spacing:-.03em}
+.ds-hero .full{font-size:clamp(1.02rem,2.4vw,1.2rem);font-weight:600;color:#fff;margin:0 0 6px}
+.ds-hero .tagline{color:var(--silver);max-width:640px;margin:0}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:14px;margin-top:28px}
+.hero-stats div{border-top:2px solid var(--teal);padding-top:10px;min-width:0}
+.hero-stats b{display:block;font-size:clamp(1.2rem,3vw,1.55rem);font-weight:800;line-height:1.1;color:#fff;letter-spacing:-.02em;overflow-wrap:anywhere}
+.hero-stats span{display:block;font-size:.8rem;color:var(--silver);margin-top:4px}
+.ds-body{padding:36px 40px 40px;display:grid;gap:36px}
+.ds-body>*{min-width:0}
+.ds-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:32px;align-items:stretch}
+.ds-fig{margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,var(--pearl),#fff);border:1px dashed #CBD5E1;border-radius:var(--radius);padding:22px 16px 14px}
+.ds-fig svg{width:100%;height:auto;max-height:230px}
+.ds-fig figcaption{margin-top:8px;font-size:.76rem;color:var(--slate);text-align:center}
+.ds-h{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;font-size:.8rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--obsidian);margin-bottom:14px}
+.ds-h::before{content:"";width:4px;height:18px;border-radius:2px;background:var(--teal);flex:none}
+.checks{list-style:none;display:grid;gap:12px}
+.checks li{position:relative;padding-left:32px}
+.checks li::before{content:"✓";position:absolute;left:0;top:2px;width:20px;height:20px;border-radius:50%;background:var(--teal);color:#fff;font-size:.7rem;line-height:20px;text-align:center;font-weight:800}
+.usecases{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+.usecases li{background:var(--pearl);border:1px solid var(--silver);border-radius:var(--radius);padding:14px 16px;font-weight:600;font-size:.93rem}
+.usecases li small{display:block;font-weight:500;color:var(--slate);font-size:.82rem;margin-top:2px}
+.notice{background:var(--teal-tint);border:1px solid var(--teal-soft);border-left:4px solid var(--teal);border-radius:var(--radius);padding:16px 20px;font-size:.93rem;color:var(--slate)}
+.notice b{color:var(--obsidian)}
+.pend{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:var(--silver);color:var(--slate)}
+.two-tbl{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}
+.two-tbl>*{min-width:0}
+
+/* ==========================================================================
+   16. FOOTER
+   ========================================================================== */
+.site-foot{background:var(--obsidian);color:var(--silver);padding:40px 0;font-size:.88rem}
+.site-foot .container{display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between;align-items:center}
+.site-foot a{color:#fff;border-color:rgba(255,255,255,.35);display:inline-block;padding:6px 0}
+.site-foot b{color:#fff}
+
+/* ==========================================================================
+   17. HOVER ONLY ON DEVICES THAT HAVE A POINTER
+   ========================================================================== */
+@media (hover:hover){
+  .btn:hover{transform:translateY(-1px)}
+  .pcard:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+}
+
+/* ==========================================================================
+   18. RESPONSIVE
+   Breakpoints: >=1400 wide desktop | <=1024 small desktop / tablet landscape |
+                <=900 tablet portrait | <=760 large phone | <=480 phone | <=360 small phone
+   ========================================================================== */
+@media (min-width:1400px){
+  .container{max-width:1240px}
+}
+@media (max-width:1024px){
+  .nav-links a{padding:8px 10px}
+  .nav-inner{gap:12px}
+}
+@media (max-width:900px){
+  .toc-grid,.two-col,.contact,.ds-intro{grid-template-columns:1fr}
+  .timeline{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .section{padding:72px 0}
+  .contact{padding:36px}
+  .ds-fig svg{max-height:210px}
+}
+@media (max-width:760px){
+  :root{--nav-h:56px;--gutter:18px}
+  /* one-row navigation: brand + swipe-able link strip */
+  .site-nav .container{padding-right:0}
+  .site-nav nav{flex:1 1 auto}
+  .brand small{display:none}
+  .nav-links{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-right:28px;
+    -webkit-mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent);
+            mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent)}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{padding:12px 14px}
+  .section{padding:56px 0}
+  .section-head{margin-bottom:32px}
+  .subhead{margin-top:40px}
+  .cover{padding:72px 0 80px}
+  .cover-brand{margin-bottom:44px}
+  .card{padding:22px}
+  .toc-card{padding:22px}
+  .toc-card .toc-title{font-size:1.3rem}
+  .toc-list.products .code{min-width:84px}
+  .part-head{padding:64px 0 28px}
+  .ds-top,.ds-foot{padding:6px 20px}
+  .ds-hero{padding:30px 22px}
+  .ds-body{padding:26px 20px 30px;gap:30px}
+  .case-head,.case-body{padding:22px 20px}
+  .contact{padding:30px 22px}
+  .timeline{grid-template-columns:1fr}
+  .decoder i{display:none}
+  .datasheet{margin-bottom:40px}
+  /* tables: allow header text to wrap, tighten cells */
+  .spec th{white-space:normal;padding:10px 12px;font-size:.7rem;letter-spacing:.03em}
+  .spec td{padding:10px 12px}
+  .spec{font-size:.88rem}
+  .spec td.k{width:50%}
+  table.spec.wide{min-width:600px}
+  .caption,.spec caption{padding:12px 14px}
+}
+@media (max-width:520px){
+  /* brand shows the logo mark only, leaving the room to the link strip */
+  .brand span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+}
+@media (max-width:480px){
+  .cover{padding:56px 0 72px}
+  .cover-brand{margin-bottom:36px}
+  .cover-brand b{font-size:1.25rem}
+  .cta-row{flex-direction:column;align-items:stretch;margin:28px 0 40px}
+  .cover-facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cover-facts dt{font-size:1.7rem}
+  .cover-waves{height:200px}
+  .stats-2{gap:12px}
+  .stat{padding:18px}
+  .bar-row{grid-template-columns:76px minmax(0,1fr) 56px;gap:8px;font-size:.82rem}
+  .chart{padding:18px}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .kpi{padding:14px}
+  .hero-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .pcard{padding:22px}
+  .pcard h3{font-size:1.4rem}
+  .decoder .seg{flex-basis:100%}
+  .btn{width:100%}
+  .ds-pn{width:100%;justify-content:space-between}
+  .usecases{grid-template-columns:1fr}
+}
+@media (max-width:360px){
+  :root{--gutter:14px}
+  .card,.toc-card{padding:18px}
+  .ds-top,.ds-foot{padding:6px 14px}
+  .ds-hero{padding:26px 16px}
+  .ds-body{padding:22px 14px 26px}
+  .case-head,.case-body{padding:18px 14px}
+  .contact{padding:24px 16px}
+  .toc-list a{gap:10px}
+  .toc-list.products .code{min-width:72px;font-size:.9rem}
+  .stat b{font-size:1.5rem}
+  .ds-index b{min-width:72px}
+}
+
+/* ==========================================================================
+   19. PRINT  (Print → Save as PDF; A4)
+   ========================================================================== */
+@page{
+  size:A4;margin:14mm 12mm 16mm;
+  @bottom-left{content:"HUAXIN Membrane — Product Manual";font:8pt Inter,"Segoe UI",system-ui,sans-serif;color:#475569}
+  @bottom-right{content:counter(page);font:8pt Inter,"Segoe UI",system-ui,sans-serif;color:#475569}
+}
+@media print{
+  :root{--shadow:none;--shadow-lg:none;--nav-h:0px;--gutter:0px}
+  html{scroll-behavior:auto;scroll-padding-top:0}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff;font-size:10pt;line-height:1.5;overflow:visible}
+  a{border-bottom:none!important}
+  /* remove interactive chrome */
+  .site-nav,.skip,.cta-row,.btn,.back-link,.ds-pn,.ds-foot,.no-print,.go,.nav-links{display:none!important}
+  .ds-top{justify-content:flex-end}
+  .ds-top .back-link{display:none!important}
+  /* page rhythm */
+  .cover{padding:60px 0 56px;page-break-after:always;break-after:page;min-height:250mm}
+  .cover-waves{height:200px}
+  .section{padding:24px 0;background:#fff!important;border:none!important}
+  .page-start{page-break-before:always;break-before:page}
+  .part-head{padding:20px 0}
+  .datasheet{page-break-before:always;break-before:page;margin:0;border:none;border-radius:0;box-shadow:none;overflow:visible}
+  .ds-top{padding:0 0 8px;background:#fff}
+  .ds-hero{border-radius:6px}
+  .ds-body{padding:22px 0 0;gap:22px}
+  h2,h3,h4,.ds-h,.family-label{page-break-after:avoid;break-after:avoid}
+  .card,.pcard,.case,.chart,.stat,.kpi,.table-wrap,.notice,.usecases li,.decoder .seg,.badge,.tl-item,.ds-fig,tr,.toc-card{page-break-inside:avoid;break-inside:avoid}
+  thead{display:table-header-group}
+  .table-wrap{overflow:visible;background:none}
+  .case{overflow:visible}
+  .pcard:hover{transform:none}
+  .toc-grid{grid-template-columns:1fr 1.15fr}
+  .two-col{grid-template-columns:1.15fr .85fr}
+  .ds-intro{grid-template-columns:1fr 1.1fr}
+  .timeline{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .contact{break-inside:avoid;grid-template-columns:1.1fr 1fr}
+  table.spec.wide{min-width:0}
+  .container{padding:0}
+}
+</style>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Shared SVG art (referenced with <use>). Placeholders: swap for product photography. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E2E8F0"/>
+      <stop offset=".32" stop-color="#F8FAFC"/>
+      <stop offset=".74" stop-color="#CCFBF1"/>
+      <stop offset="1" stop-color="#5EEAD4"/>
+    </linearGradient>
+    <linearGradient id="gSteel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F8FAFC"/>
+      <stop offset=".5" stop-color="#CBD5E1"/>
+      <stop offset="1" stop-color="#94A3B8"/>
+    </linearGradient>
+    <linearGradient id="gSheet" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#F0FDFA"/>
+      <stop offset="1" stop-color="#CCFBF1"/>
+    </linearGradient>
+    <linearGradient id="gMark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0D9488"/>
+      <stop offset="1" stop-color="#0F766E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Brand mark (simple stand-in; replace with the official logo file) -->
+  <symbol id="mark" viewBox="0 0 48 48">
+    <circle cx="24" cy="24" r="23" fill="url(#gMark)"/>
+    <path d="M7 22c5-5 9-5 14 0s9 5 14 0 7-4 9-3" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <path d="M7 31c5-5 9-5 14 0s9 5 14 0 7-4 9-3" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- Spiral-wound RO / NF element -->
+  <symbol id="art-element" viewBox="0 0 400 240">
+    <ellipse cx="215" cy="216" rx="140" ry="9" fill="#0F172A" opacity=".08"/>
+    <ellipse cx="330" cy="120" rx="26" ry="64" fill="url(#gBody)" stroke="#CBD5E1" stroke-width="1.5"/>
+    <rect x="100" y="56" width="230" height="128" fill="url(#gBody)"/>
+    <line x1="100" y1="56" x2="330" y2="56" stroke="#CBD5E1" stroke-width="1.5"/>
+    <line x1="100" y1="184" x2="330" y2="184" stroke="#94A3B8" stroke-width="1.5"/>
+    <rect x="124" y="56" width="3" height="128" fill="#0D9488" opacity=".28"/>
+    <rect x="300" y="56" width="3" height="128" fill="#0D9488" opacity=".28"/>
+    <rect x="165" y="92" width="122" height="58" rx="5" fill="#fff" opacity=".93" stroke="#E2E8F0"/>
+    <rect x="178" y="104" width="68" height="7" rx="2" fill="#0F172A" opacity=".85"/>
+    <rect x="252" y="104" width="22" height="7" rx="2" fill="#0D9488"/>
+    <rect x="178" y="119" width="96" height="4" rx="2" fill="#94A3B8"/>
+    <rect x="178" y="129" width="80" height="4" rx="2" fill="#94A3B8"/>
+    <ellipse cx="100" cy="120" rx="26" ry="64" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
+    <ellipse cx="100" cy="120" rx="19" ry="54" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
+    <g stroke="#0D9488" stroke-width="3" stroke-linecap="round" opacity=".6">
+      <line x1="100" y1="120" x2="119" y2="120"/><line x1="100" y1="120" x2="113.4" y2="158.2"/>
+      <line x1="100" y1="120" x2="100" y2="174"/><line x1="100" y1="120" x2="86.6" y2="158.2"/>
+      <line x1="100" y1="120" x2="81" y2="120"/><line x1="100" y1="120" x2="86.6" y2="81.8"/>
+      <line x1="100" y1="120" x2="100" y2="66"/><line x1="100" y1="120" x2="113.4" y2="81.8"/>
+    </g>
+    <ellipse cx="100" cy="120" rx="6" ry="15" fill="#fff" stroke="#0D9488" stroke-width="2"/>
+  </symbol>
+
+  <!-- MBR module: stainless frame with membrane sheets -->
+  <symbol id="art-mbr" viewBox="0 0 400 240">
+    <ellipse cx="200" cy="222" rx="150" ry="8" fill="#0F172A" opacity=".08"/>
+    <rect x="62" y="44" width="276" height="154" rx="4" fill="#fff" stroke="#475569" stroke-width="5"/>
+    <rect x="58" y="32" width="284" height="14" rx="3" fill="url(#gSteel)" stroke="#94A3B8"/>
+    <rect x="58" y="196" width="284" height="14" rx="3" fill="url(#gSteel)" stroke="#94A3B8"/>
+    <g fill="url(#gSheet)" stroke="#0D9488" stroke-width="1.5">
+      <rect x="82" y="52" width="16" height="142" rx="3"/><rect x="110" y="52" width="16" height="142" rx="3"/>
+      <rect x="138" y="52" width="16" height="142" rx="3"/><rect x="166" y="52" width="16" height="142" rx="3"/>
+      <rect x="194" y="52" width="16" height="142" rx="3"/><rect x="222" y="52" width="16" height="142" rx="3"/>
+      <rect x="250" y="52" width="16" height="142" rx="3"/><rect x="278" y="52" width="16" height="142" rx="3"/>
+      <rect x="306" y="52" width="16" height="142" rx="3"/>
+    </g>
+    <g fill="none" stroke="#0D9488" stroke-width="1.5" opacity=".55">
+      <circle cx="104" cy="226" r="3"/><circle cx="132" cy="230" r="2.5"/><circle cx="188" cy="228" r="3"/>
+      <circle cx="244" cy="230" r="2.5"/><circle cx="300" cy="227" r="3"/>
+    </g>
+  </symbol>
+
+  <!-- UF column module -->
+  <symbol id="art-uf" viewBox="0 0 400 240">
+    <ellipse cx="200" cy="200" rx="160" ry="9" fill="#0F172A" opacity=".08"/>
+    <rect x="70" y="84" width="260" height="76" rx="10" fill="url(#gBody)" stroke="#CBD5E1" stroke-width="1.5"/>
+    <g stroke="#0D9488" stroke-width="2" opacity=".35" stroke-linecap="round">
+      <line x1="84" y1="98" x2="316" y2="98"/><line x1="84" y1="108" x2="316" y2="108"/>
+      <line x1="84" y1="118" x2="316" y2="118"/><line x1="84" y1="128" x2="316" y2="128"/>
+      <line x1="84" y1="138" x2="316" y2="138"/><line x1="84" y1="148" x2="316" y2="148"/>
+    </g>
+    <rect x="48" y="74" width="34" height="96" rx="8" fill="#0F172A"/>
+    <rect x="318" y="74" width="34" height="96" rx="8" fill="#0F172A"/>
+    <rect x="120" y="62" width="18" height="24" rx="2" fill="#475569"/>
+    <rect x="262" y="62" width="18" height="24" rx="2" fill="#475569"/>
+    <rect x="191" y="158" width="18" height="24" rx="2" fill="#475569"/>
+    <rect x="52" y="86" width="6" height="72" rx="2" fill="#0D9488" opacity=".7"/>
+    <rect x="342" y="86" width="6" height="72" rx="2" fill="#0D9488" opacity=".7"/>
+  </symbol>
+</svg>
+
+<!-- ============================ NAVIGATION ============================ -->
+<header class="site-nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#top" aria-label="HUAXIN Membrane — back to cover">
+      <svg aria-hidden="true"><use href="#mark" width="30" height="30"/></svg>
+      <span>HUAXIN<small>Innovation for water</small></span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#toc">Contents</a></li>
+        <li><a href="#selection">Selection Guide</a></li>
+        <li><a href="#cases">Field Cases</a></li>
+        <li><a href="#datasheets" class="cta">Datasheets</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================== COVER =============================== -->
+<section class="cover" aria-labelledby="cover-title">
+  <div class="container cover-inner">
+    <div class="cover-brand">
+      <svg aria-hidden="true"><use href="#mark" width="46" height="46"/></svg>
+      <div><b>HUAXIN</b><span>Innovation for water</span></div>
+    </div>
+    <p class="eyebrow-light">Product Manual &nbsp;·&nbsp; Digital Edition</p>
+    <h1 id="cover-title">HUAXIN <em>Membrane</em></h1>
+    <p class="cover-sub">Refining Membrane Technology</p>
+    <p class="cover-desc">High-performance water treatment membranes — RO, NF, MBR and UF — engineered by a Tsinghua PhD team for seawater desalination, zero liquid discharge and high-quality drinking water.</p>
+    <div class="cta-row">
+      <a class="btn btn-light" href="#toc">Explore the Manual <span aria-hidden="true">→</span></a>
+      <a class="btn btn-ghost" href="#datasheets">Browse Datasheets</a>
+    </div>
+    <dl class="cover-facts">
+      <div><dt>9</dt><dd>Product lines, RO to UF</dd></div>
+      <div><dt>10M m²</dt><dd>Annual membrane-sheet capacity</dd></div>
+      <div><dt>3</dt><dd>Tsinghua PhD co-founders</dd></div>
+      <div><dt>2023</dt><dd>HUAXIN Membrane founded</dd></div>
+    </dl>
+  </div>
+  <svg class="cover-waves" viewBox="0 0 1440 300" preserveAspectRatio="none" aria-hidden="true">
+    <g fill="none" stroke="#0D9488" stroke-width="1.4">
+      <path vector-effect="non-scaling-stroke" d="M0 120 C240 40 480 220 720 120 S1200 40 1440 120" opacity=".9"/>
+      <path vector-effect="non-scaling-stroke" d="M0 140 C240 60 480 240 720 140 S1200 60 1440 140" opacity=".75"/>
+      <path vector-effect="non-scaling-stroke" d="M0 160 C240 80 480 260 720 160 S1200 80 1440 160" opacity=".6"/>
+      <path vector-effect="non-scaling-stroke" d="M0 180 C240 100 480 280 720 180 S1200 100 1440 180" opacity=".45"/>
+      <path vector-effect="non-scaling-stroke" d="M0 200 C240 120 480 300 720 200 S1200 120 1440 200" opacity=".32"/>
+      <path vector-effect="non-scaling-stroke" d="M0 220 C240 140 480 320 720 220 S1200 140 1440 220" opacity=".2"/>
+    </g>
+  </svg>
+</section>
+
+<main id="main">
+
+<!-- ========================= EXECUTIVE SUMMARY ======================== -->
+<section class="section" id="summary" aria-labelledby="summary-h">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Executive Summary</div>
+      <h2 id="summary-h">Membranes engineered at the molecular scale, proven in the field.</h2>
+      <p class="lead">Huaxin Nano is a technology-driven enterprise focused on high-end separation membranes. Its mission is to break foreign technological monopolies and advance the localization and global application of membrane materials.</p>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <p>The <strong>HUAXIN Membrane</strong> brand was incubated by Tsinghua x-lab, Tsinghua Tongfang and Tsinghua Chuang+, and brings a Tsinghua University doctoral team together with leading R&amp;D institutions in Europe, the Middle East and beyond. Its “molecule–nano–composite membrane” hierarchical design is positioned to deliver better selectivity, stability and permeability than leading international products, at a competitive price.</p>
+        <p>The portfolio covers the full water-treatment chain. Reverse osmosis ranges from extra-low-pressure <a href="#product-hx-xlp">HX-XLP</a> and low-pressure <a href="#product-hx-lp">HX-LP</a> through brackish water <a href="#product-hx-bw">HX-BW</a> and anti-fouling <a href="#product-hx-bwfr">HX-BWFR</a> to seawater <a href="#product-hx-sw">HX-SW</a>. Nanofiltration includes the drinking-water <a href="#product-hx-hq">HX-HQ</a> and the industrial salt-separation <a href="#product-hx-bm">HX-BM</a>. The line is completed by the <a href="#product-hx-mbr">HX-MBR</a> membrane bioreactor and the <a href="#product-hx-uf">HX-UF</a> column ultrafiltration module.</p>
+        <p>Field results from mine-water reuse, zero liquid discharge and Middle Eastern groundwater projects are collected in <a href="#cases">Chapter 05</a>.</p>
+      </div>
+      <div class="stats-2">
+        <div class="stat"><b>9</b><span>product lines across RO, NF, MBR and UF</span></div>
+        <div class="stat"><b>10M m²</b><span>annual membrane-sheet capacity in Jining, Shandong</span></div>
+        <div class="stat"><b>3</b><span>co-founders, all Tsinghua University PhDs</span></div>
+        <div class="stat"><b>99.62%</b><span>salt rejection held in a <a href="#case-1">mine-water RO case</a></span></div>
+      </div>
+    </div>
+
+    <div class="how" aria-label="How to use this document">
+      <div><b>Every product name is a link</b>Tap or click any product code in the Master Manual to jump to its datasheet.</div>
+      <div><b>Every datasheet links back</b>Use “← Back to Master Manual” at the top or bottom of a datasheet to return to the contents.</div>
+      <div><b>Works on every screen</b>The layout adapts to phones, tablets and desktops, and prints cleanly to PDF with each datasheet on a new page.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= TABLE OF CONTENTS ======================== -->
+<section class="section alt" id="toc" aria-labelledby="toc-h">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Contents</div>
+      <h2 id="toc-h">Table of Contents</h2>
+      <p class="lead">Part A is the Master Manual. Part B holds a dedicated datasheet for every product line.</p>
+    </div>
+    <div class="toc-grid">
+      <div class="toc-card">
+        <h3>Part A</h3>
+        <div class="toc-title">Master Manual</div>
+        <ul class="toc-list">
+          <li><a href="#about"><span class="n">01</span><span>About HUAXIN<span class="d">Company, brand, history and honors</span></span></a></li>
+          <li><a href="#technology"><span class="n">02</span><span>Core Technological Advantages<span class="d">Formulation, post-treatment and process engineering</span></span></a></li>
+          <li><a href="#applications"><span class="n">03</span><span>Application Fields<span class="d">Six fields from ZLD to lithium extraction</span></span></a></li>
+          <li><a href="#selection"><span class="n">04</span><span>Product Selection Guide<span class="d">Lineup, quick selector, comparison and model codes</span></span></a></li>
+          <li><a href="#cases"><span class="n">05</span><span>Classic Cases<span class="d">Field tests and long-term operation results</span></span></a></li>
+          <li><a href="#contact"><span class="n">06</span><span>Contact<span class="d">Talk to the HUAXIN team</span></span></a></li>
+        </ul>
+      </div>
+      <div class="toc-card" id="toc-datasheets">
+        <h3>Part B</h3>
+        <div class="toc-title">Product Datasheets</div>
+        <div class="toc-group">Reverse Osmosis</div>
+        <ul class="toc-list products">
+          <li><a href="#product-hx-xlp"><span class="code">HX-XLP</span><span class="name">Extra Low Pressure RO Elements</span></a></li>
+          <li><a href="#product-hx-lp"><span class="code">HX-LP</span><span class="name">Low Pressure RO Elements</span></a></li>
+          <li><a href="#product-hx-bw"><span class="code">HX-BW</span><span class="name">Brackish Water RO Elements</span></a></li>
+          <li><a href="#product-hx-bwfr"><span class="code">HX-BWFR</span><span class="name">Anti-Fouling RO Elements</span></a></li>
+          <li><a href="#product-hx-sw"><span class="code">HX-SW</span><span class="name">Seawater Desalination RO Elements</span></a></li>
+        </ul>
+        <div class="toc-group">Nanofiltration</div>
+        <ul class="toc-list products">
+          <li><a href="#product-hx-hq"><span class="code">HX-HQ</span><span class="name">High-Quality Drinking Water NF Elements</span></a></li>
+          <li><a href="#product-hx-bm"><span class="code">HX-BM</span><span class="name">Industrial Salt Separation NF Elements</span></a></li>
+        </ul>
+        <div class="toc-group">Bioreactor &amp; Ultrafiltration</div>
+        <ul class="toc-list products">
+          <li><a href="#product-hx-mbr"><span class="code">HX-MBR</span><span class="name">Membrane Bioreactor (MBR) Modules</span></a></li>
+          <li><a href="#product-hx-uf"><span class="code">HX-UF</span><span class="name">Column Ultrafiltration (UF) Modules</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= 01 ABOUT ============================= -->
+<section class="section page-start" id="about" aria-labelledby="about-h">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Chapter 01</div>
+      <h2 id="about-h">About HUAXIN</h2>
+      <p class="lead">A Tsinghua-born, technology-driven membrane company with its own raw-material, equipment and process know-how.</p>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <p>All three co-founders hold Tsinghua University PhDs. Drawing on decades of R&amp;D experience, they built a fully independent production line that integrates raw materials, equipment and processes.</p>
+        <p>To meet global demand, Huaxin co-established <strong>Shandong Jinxin Membrane Technology</strong> with Shandong Jinyu, launching a production line with <strong>10 million m²</strong> of annual output.</p>
+        <p>With a global vision, Huaxin aims to become a key player in the international high-end separation membrane market, driving sustainable development in water treatment, energy and chemicals.</p>
+        <div class="pull">Break foreign technological monopolies. Advance the localization and global application of membrane materials.</div>
+      </div>
+      <div class="card accent">
+        <h3>Brand Introduction</h3>
+        <p class="muted">“HUAXIN Membrane” is an international high-end separation membrane brand, incubated jointly by Tsinghua x-lab, Tsinghua Tongfang and Tsinghua Chuang+. It was founded by a doctoral team from Tsinghua University together with top global R&amp;D institutions in Europe, the Middle East and other regions.</p>
+        <p class="muted">Featuring high strength and durability, high desalination rate, high flux and low energy consumption, it serves seawater desalination, zero discharge of high-concentration and complex industrial wastewater, and high-quality drinking water production.</p>
+        <div class="partners">
+          <span class="chip teal">Tsinghua x-lab</span>
+          <span class="chip teal">Tsinghua Tongfang</span>
+          <span class="chip teal">Tsinghua Chuang+</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subhead">Brand History</h3>
+    <p>Founded in 2023 by a Tsinghua PhD team in partnership with global R&amp;D institutions, HUAXIN Membrane has achieved large-scale production of full-category RO/NF products: seawater desalination (<a href="#product-hx-sw">HX-SW</a>), brackish water and anti-fouling (<a href="#product-hx-bw">HX-BW</a>, <a href="#product-hx-bwfr">HX-BWFR</a>), high-quality drinking water (<a href="#product-hx-hq">HX-HQ</a>) and salt-splitting nanofiltration (<a href="#product-hx-bm">HX-BM</a>) membranes. Long-term use in demanding scenarios such as mine-water treatment and industrial wastewater zero discharge has earned strong customer recognition (see <a href="#cases">Chapter 05</a>). In 2025 the team established Shandong Jinxin Membrane Technology Development Co., Ltd. in Jining, Shandong, and completed a high-end membrane sheet production line with independent intellectual property and 10 million m² of annual capacity.</p>
+    <div class="timeline" role="list">
+      <div class="tl-item" role="listitem"><b>Up to 2023</b><span>Decades of technological research</span></div>
+      <div class="tl-item" role="listitem"><b>2023</b><span>Brand creation, realization and mass production</span></div>
+      <div class="tl-item" role="listitem"><b>2023–2025</b><span>Long-term practical use in the field</span></div>
+      <div class="tl-item" role="listitem"><b>2024–2025</b><span>Landed in Jining, Shandong; scale-up production</span></div>
+    </div>
+
+    <h3 class="subhead">Brand Honors</h3>
+    <ul class="honors">
+      <li>HICOOL Certificate of Honor</li>
+      <li>First, Second and Third Prize certificates from Tsinghua University innovation and entrepreneurship competitions, including the Tsinghua “Chuang+” incubation project and the Tsinghua alumni finals</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================== 02 CORE TECHNOLOGY ======================== -->
+<section class="section alt page-start" id="technology" aria-labelledby="tech-h">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Chapter 02</div>
+      <h2 id="tech-h">Core Technological Advantages</h2>
+      <p class="lead">Performance is decided at the molecular scale and secured on the production line.</p>
+    </div>
+
+    <div class="grid g3" style="margin-top:20px">
+      <article class="card pillar">
+        <span class="idx">1</span>
+        <h3>Molecular / Nanoscale Formulation Optimization</h3>
+        <p class="muted">Cutting-edge material and product innovation by precisely tuning the molecular or nano structure. This raises the crosslinking degree of the polyamide functional layer, improving oxidation resistance and cleanability.</p>
+      </article>
+      <article class="card pillar">
+        <span class="idx">2</span>
+        <h3>Advanced Membrane Post-Treatment</h3>
+        <p class="muted">Delivers exceptional performance and efficiency, ensuring long-term stability and superior functionality of HUAXIN membranes.</p>
+      </article>
+      <article class="card pillar">
+        <span class="idx">3</span>
+        <h3>Comprehensive, Tailored Product Optimization</h3>
+        <p class="muted">An integrated membrane–grid–element optimization approach delivers high reliability and quality across application fields, with excellent anti-fouling capability and long-term durability.</p>
+      </article>
+    </div>
+
+    <h3 class="subhead">From Process Parameters to Scalable Manufacturing</h3>
+    <div class="two-col">
+      <p class="muted">The performance of both the high-performance base membrane and the functional layer is closely tied to the manufacturing process. With thousands of core process parameters in play, identifying the factors that drive product performance and stability in large-scale production is extremely challenging.</p>
+      <p class="muted">By combining computer simulation with extensive process-engineering experiments, the Tsinghua PhD team identified the critical parameters and established accurate correlations between processing conditions and membrane performance. Continuous optimization of key equipment components has significantly improved the precision of the slit extrusion process, raising the operational stability and yield of the production line and supporting scalable manufacturing of high-end membrane formulations.</p>
+    </div>
+
+    <div class="badges" aria-label="Capability highlights">
+      <span class="badge">Complete product lineup</span>
+      <span class="badge">Professional customization available</span>
+      <span class="badge">Outstanding durability</span>
+      <span class="badge">Extremely high chemical resistance</span>
+      <span class="badge">Excellent performance homogeneity</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== 03 APPLICATION FIELDS ===================== -->
+<section class="section" id="applications" aria-labelledby="apps-h">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Chapter 03</div>
+      <h2 id="apps-h">HUAXIN Membrane Application Fields</h2>
+      <p class="lead">Six fields where tailored RO and NF solutions are already at work. Related datasheets are one tap away.</p>
+    </div>
+    <div class="grid g3">
+      <article class="card app-card">
+        <div class="app-ico" aria-hidden="true">ZLD</div>
+        <h3>Zero Liquid Discharge of Industrial Wastewater</h3>
+        <p>RO membranes tailored to a range of industrial wastewater qualities, with a focus on anti-fouling, chemical-cleaning resistance and oxidation resistance.</p>
+        <div class="related">Related: <a href="#product-hx-bwfr">HX-BWFR</a> <a href="#product-hx-sw">HX-SW</a></div>
+      </article>
+      <article class="card app-card">
+        <div class="app-ico" aria-hidden="true">DW</div>
+        <h3>High-Quality Drinking Water</h3>
+        <p>Membranes developed for different water sources that remove hardness and micropollutants while retaining beneficial minerals to enhance taste.</p>
+        <div class="related">Related: <a href="#product-hx-hq">HX-HQ</a> <a href="#product-hx-uf">HX-UF</a></div>
+      </article>
+      <article class="card app-card">
+        <div class="app-ico" aria-hidden="true">REUSE</div>
+        <h3>Municipal Wastewater Reuse</h3>
+        <p>RO and NF membranes designed for varied qualities of reclaimed municipal water, focused on anti-fouling properties, high flux and energy efficiency.</p>
+        <div class="related">Related: <a href="#product-hx-mbr">HX-MBR</a> <a href="#product-hx-uf">HX-UF</a> <a href="#product-hx-bwfr">HX-BWFR</a></div>
+      </article>
+      <article class="card app-card">
+        <div class="app-ico" aria-hidden="true">SEA</div>
+        <h3>Seawater Desalination &amp; Comprehensive Utilization</h3>
+        <p>RO and NF membranes for seawater desalination and the extraction of high-value by-products, with a strong emphasis on biofouling resistance.</p>
+        <div class="related">Related: <a href="#product-hx-sw">HX-SW</a></div>
+      </article>
+      <article class="card app-card">
+        <div class="app-ico" aria-hidden="true">Li</div>
+        <h3>Lithium Extraction from Salt Lakes</h3>
+        <p>Customized reverse osmosis and nanofiltration membranes for different salt-lake compositions, emphasizing high selectivity and reduced reliance on adsorbents or other auxiliary agents.</p>
+        <div class="related">Related: <a href="#product-hx-bm">HX-BM</a> <a href="#product-hx-hq">HX-HQ</a></div>
+      </article>
+      <article class="card app-card">
+        <div class="app-ico" aria-hidden="true">UPW</div>
+        <h3>High-Purity Water for Industrial Use</h3>
+        <p>HUAXIN RO membranes provide high-purity water for the semiconductor, medical and food industries, with high salt rejection, high flux and low energy consumption.</p>
+        <div class="related">Related: <a href="#product-hx-xlp">HX-XLP</a> <a href="#product-hx-lp">HX-LP</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 04 PRODUCT SELECTION GUIDE ================== -->
+<section class="section alt page-start" id="selection" aria-labelledby="sel-h">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Chapter 04</div>
+      <h2 id="sel-h">Product Selection Guide</h2>
+      <p class="lead">Start with the lineup, narrow down with the quick selector, compare the RO/NF elements side by side, and decode any model number.</p>
+    </div>
+
+    <!-- 4.1 Lineup -->
+    <h3 class="subhead" id="lineup" style="margin-top:0">Product Lineup</h3>
+    <p>Nine product lines in three families. Select a product to open its datasheet.</p>
+
+    <div class="family-label">Reverse Osmosis</div>
+    <div class="grid g3">
+      <article class="pcard">
+        <span class="tag">RO · Extra low pressure</span>
+        <h3><a href="#product-hx-xlp">HX-XLP</a></h3>
+        <div class="full">Extra Low Pressure RO Elements</div>
+        <p class="sum">Energy-efficient, high-flux RO for feed water below 1,000 ppm, delivering high permeate flow at ultra-low operating pressure to cut energy and system costs.</p>
+        <div class="pstats"><span class="chip teal">99.0% rejection</span><span class="chip">3 models</span></div>
+        <a class="go" href="#product-hx-xlp">View datasheet</a>
+      </article>
+      <article class="pcard">
+        <span class="tag">RO · Low pressure</span>
+        <h3><a href="#product-hx-lp">HX-LP</a></h3>
+        <div class="full">Low Pressure RO Elements</div>
+        <p class="sum">Energy-saving, high-permeate RO for feed water below 2,000 ppm, with excellent tolerance to repeated acid and alkali cleaning cycles.</p>
+        <div class="pstats"><span class="chip teal">99.3% rejection</span><span class="chip">3 models</span></div>
+        <a class="go" href="#product-hx-lp">View datasheet</a>
+      </article>
+      <article class="pcard">
+        <span class="tag">RO · Brackish water</span>
+        <h3><a href="#product-hx-bw">HX-BW</a></h3>
+        <div class="full">Brackish Water RO Elements</div>
+        <p class="sum">High-rejection, industrial-grade RO for feed water below 5,000 ppm, with a broad pH tolerance range and easy, effective cleaning.</p>
+        <div class="pstats"><span class="chip teal">99.5% rejection</span><span class="chip">3 models</span></div>
+        <a class="go" href="#product-hx-bw">View datasheet</a>
+      </article>
+      <article class="pcard">
+        <span class="tag">RO · Anti-fouling</span>
+        <h3><a href="#product-hx-bwfr">HX-BWFR</a></h3>
+        <div class="full">Anti-Fouling RO Elements</div>
+        <p class="sum">Contamination-resistant RO for high-fouling brackish waters below 5,000 ppm, field-tested over 693 days of mine-water operation.</p>
+        <div class="pstats"><span class="chip teal">99.5% rejection</span><span class="chip">2 models</span></div>
+        <a class="go" href="#product-hx-bwfr">View datasheet</a>
+      </article>
+      <article class="pcard">
+        <span class="tag">RO · Seawater</span>
+        <h3><a href="#product-hx-sw">HX-SW</a></h3>
+        <div class="full">Seawater Desalination RO Elements</div>
+        <p class="sum">High-rejection, high-flux RO for feed water above 10,000 ppm, with high boron rejection and no oxidative post-treatment boost. Field-proven in mine-water and zero-liquid-discharge plants.</p>
+        <div class="pstats"><span class="chip teal">99.7% rejection</span><span class="chip">3 models</span></div>
+        <a class="go" href="#product-hx-sw">View datasheet</a>
+      </article>
+    </div>
+
+    <div class="family-label">Nanofiltration</div>
+    <div class="grid g3">
+      <article class="pcard">
+        <span class="tag">NF · Drinking water</span>
+        <h3><a href="#product-hx-hq">HX-HQ</a></h3>
+        <div class="full">High-Quality Drinking Water NF Elements</div>
+        <p class="sum">High-flux NF for deep purification of municipal surface or well water: hardness softening, color and odor removal and taste improvement, while keeping beneficial minerals.</p>
+        <div class="pstats"><span class="chip teal">&gt; 90% rejection</span><span class="chip">3 models</span></div>
+        <a class="go" href="#product-hx-hq">View datasheet</a>
+      </article>
+      <article class="pcard">
+        <span class="tag">NF · Industrial separation</span>
+        <h3><a href="#product-hx-bm">HX-BM</a></h3>
+        <div class="full">Industrial Salt Separation NF Elements</div>
+        <p class="sum">High-selectivity nanofiltration that retains organics above 200 Da and divalent salts while passing part of the monovalent salts.</p>
+        <div class="pstats"><span class="chip teal">98% MgSO₄ rejection</span><span class="chip">3 models</span></div>
+        <a class="go" href="#product-hx-bm">View datasheet</a>
+      </article>
+    </div>
+
+    <div class="family-label">Bioreactor &amp; Ultrafiltration</div>
+    <div class="grid g3">
+      <article class="pcard">
+        <span class="tag">MBR · Wastewater</span>
+        <h3><a href="#product-hx-mbr">HX-MBR</a></h3>
+        <div class="full">Membrane Bioreactor (MBR) Modules</div>
+        <p class="sum">Stainless-steel-frame modules with over 100 mm sheet spacing, reducing fiber tangling and cleaning frequency in municipal and industrial biological treatment.</p>
+        <div class="pstats"><span class="chip teal">150–400 m³/d</span><span class="chip">6 models</span></div>
+        <a class="go" href="#product-hx-mbr">View datasheet</a>
+      </article>
+      <article class="pcard">
+        <span class="tag">UF · Column module</span>
+        <h3><a href="#product-hx-uf">HX-UF</a></h3>
+        <div class="full">Column Ultrafiltration (UF) Modules</div>
+        <p class="sum">PVDF hollow-fiber UF columns with a high specific surface area and excellent chemical resistance for water purification and wastewater treatment.</p>
+        <div class="pstats"><span class="chip teal">&lt; 30 nm pores</span><span class="chip">4 models</span></div>
+        <a class="go" href="#product-hx-uf">View datasheet</a>
+      </article>
+    </div>
+
+    <!-- 4.2 Quick selector -->
+    <h3 class="subhead" id="selector">Quick Selector</h3>
+    <p>Indicative guidance based on the feed-water ranges and applications stated in this manual. Confirm final system design with HUAXIN technical support.</p>
+    <div class="table-wrap">
+      <table class="spec">
+        <thead><tr><th>Your water or need</th><th>Stated feed range</th><th>Start with</th></tr></thead>
+        <tbody>
+          <tr><td>Very low salinity feed, second-stage RO, ultrapure water for electronics, food and beverage</td><td>&lt; 1,000 ppm</td><td><a href="#product-hx-xlp">HX-XLP</a></td></tr>
+          <tr><td>Low-salinity deep well, surface or boiler feed water</td><td>&lt; 2,000 ppm</td><td><a href="#product-hx-lp">HX-LP</a></td></tr>
+          <tr><td>Moderately saline deep well water, boiler make-up or brackish water</td><td>&lt; 5,000 ppm</td><td><a href="#product-hx-bw">HX-BW</a></td></tr>
+          <tr><td>The same waters under high-fouling conditions</td><td>&lt; 5,000 ppm, high fouling</td><td><a href="#product-hx-bwfr">HX-BWFR</a></td></tr>
+          <tr><td>Seawater, high-salinity deep well water, industrial brine, mine water, zero liquid discharge</td><td>&gt; 10,000 ppm</td><td><a href="#product-hx-sw">HX-SW</a></td></tr>
+          <tr><td>Drinking water: hardness softening, color and odor removal, taste improvement</td><td>Municipal surface or well water</td><td><a href="#product-hx-hq">HX-HQ</a></td></tr>
+          <tr><td>Separating salts from organics, concentrating valuable solutes</td><td>Industrial process streams</td><td><a href="#product-hx-bm">HX-BM</a></td></tr>
+          <tr><td>Biological treatment of municipal or industrial wastewater</td><td>150–400 m³/d per module</td><td><a href="#product-hx-mbr">HX-MBR</a></td></tr>
+          <tr><td>Surface water purification, drinking water filtration, process and wastewater treatment</td><td>Particulate removal (pores &lt; 30 nm)</td><td><a href="#product-hx-uf">HX-UF</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4.3 Matrix -->
+    <h3 class="subhead" id="matrix">RO / NF Element Comparison</h3>
+    <p>Ratings are measured under each product’s own test conditions, so compare rejection figures with care.</p>
+    <div class="table-wrap">
+      <table class="spec wide">
+        <thead><tr><th>Product</th><th>Type</th><th>Feed salinity</th><th class="n">Stable rejection</th><th>Rated at</th><th>Models</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#product-hx-xlp">HX-XLP</a></td><td>RO</td><td>&lt; 1,000 ppm</td><td class="n hl">99.0%</td><td>500 ppm NaCl · 100 psi (0.69 MPa)</td><td>4040-100, 8040-400, 8040-440</td></tr>
+          <tr><td><a href="#product-hx-lp">HX-LP</a></td><td>RO</td><td>&lt; 2,000 ppm</td><td class="n hl">99.3%</td><td>1,500 ppm NaCl · 150 psi (1.03 MPa)</td><td>4040-100, 8040-400, 8040-440</td></tr>
+          <tr><td><a href="#product-hx-bw">HX-BW</a></td><td>RO</td><td>&lt; 5,000 ppm</td><td class="n hl">99.5%</td><td>2,000 ppm NaCl · 225 psi (15.5 bar)</td><td>4040-100, 8040-400, 8040-440</td></tr>
+          <tr><td><a href="#product-hx-bwfr">HX-BWFR</a></td><td>RO, anti-fouling</td><td>&lt; 5,000 ppm</td><td class="n hl">99.5%</td><td>2,000 ppm NaCl · 225 psi (15.5 bar)</td><td>4040-100, 8040-400</td></tr>
+          <tr><td><a href="#product-hx-sw">HX-SW</a></td><td>RO, seawater</td><td>&gt; 10,000 ppm</td><td class="n hl">99.7%</td><td>32,000 ppm NaCl · 800 psi (5.5 MPa) · 8% recovery</td><td>4040-100, 8040-400, 8040-440</td></tr>
+          <tr><td><a href="#product-hx-hq">HX-HQ</a></td><td>NF, drinking water</td><td>Municipal surface or well water</td><td class="n hl">&gt; 90%</td><td>2,000 ppm NaCl · 100 psi (6.9 bar)</td><td>4040-100, 8040-400, 8040-440</td></tr>
+          <tr><td><a href="#product-hx-bm">HX-BM</a></td><td>NF, salt separation</td><td>Process streams</td><td class="n hl">NaCl 5–30% · MgSO₄ 98%</td><td>2,000 ppm NaCl / MgSO₄ · 100 psi (6.9 bar)</td><td>4040-100, 8040-400, 8040-440</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">All stated at 77 °F (25 °C) and pH 7–8. Recovery is 15% except for <a href="#product-hx-sw">HX-SW</a> (8%). Permeate flow of a single element may vary by ±20% (<a href="#product-hx-bm">HX-BM</a>: not more than 15% below the stated value).</p>
+
+    <!-- 4.4 Decoder -->
+    <h3 class="subhead" id="decoder">Model Code Decoder</h3>
+    <p>Every HUAXIN element follows the same pattern. Example: <strong>HX-BW-8040 (4040)-400</strong>.</p>
+    <div class="decoder">
+      <div class="seg"><code>HX</code><span class="lbl">Brand</span><p>HUAXIN</p></div>
+      <i aria-hidden="true">–</i>
+      <div class="seg"><code>BW</code><span class="lbl">Product type</span><p>See the table below</p></div>
+      <i aria-hidden="true">–</i>
+      <div class="seg"><code>8040 (4040)</code><span class="lbl">Element size</span><p>8.0″ or 4.0″ diameter × 40″ length</p></div>
+      <i aria-hidden="true">–</i>
+      <div class="seg"><code>400</code><span class="lbl">Membrane area</span><p>100, 400 or 440 ft²</p></div>
+    </div>
+    <div class="table-wrap">
+      <table class="spec">
+        <thead><tr><th>Type code</th><th>Product</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#product-hx-xlp">HX-XLP</a></td><td>Extra Low Pressure RO Elements</td></tr>
+          <tr><td><a href="#product-hx-lp">HX-LP</a></td><td>Low Pressure RO Elements</td></tr>
+          <tr><td><a href="#product-hx-bw">HX-BW</a></td><td>Brackish Water RO Elements</td></tr>
+          <tr><td><a href="#product-hx-bwfr">HX-BWFR</a></td><td>Anti-Fouling RO Elements</td></tr>
+          <tr><td><a href="#product-hx-sw">HX-SW</a></td><td>Seawater Desalination RO Elements</td></tr>
+          <tr><td><a href="#product-hx-hq">HX-HQ</a></td><td>High-Quality Drinking Water NF Elements</td></tr>
+          <tr><td><a href="#product-hx-bm">HX-BM</a></td><td>Industrial Desalting NF Elements</td></tr>
+          <tr><td><a href="#product-hx-mbr">HUAXIN MBR</a></td><td>Membrane Bioreactor (MBR)</td></tr>
+          <tr><td><a href="#product-hx-uf">HUAXIN UF</a></td><td>Column Ultrafiltration (UF) Module</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 05 CASES ============================== -->
+<section class="section page-start" id="cases" aria-labelledby="cases-h">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Chapter 05</div>
+      <h2 id="cases-h">Classic Cases</h2>
+      <p class="lead">Side-by-side field tests against leading international brands, followed by long-term operation records from demanding industrial sites.</p>
+    </div>
+
+    <h3 class="subhead" id="field-tests" style="margin-top:0">Field Test Cases</h3>
+    <div class="legend" aria-hidden="true"><span><i></i>HUAXIN</span><span><i class="alt"></i>Leading international brand</span></div>
+
+    <div class="grid g2">
+      <!-- Field test 1 -->
+      <div class="chart" id="ft-1">
+        <h4>Field Test 1 · Coastal Middle East groundwater</h4>
+        <p class="ctx">Conductivity <b>6,450 µS/cm</b>. <a href="#product-hx-hq">HUAXIN HQ drinking water NF membrane</a> vs. a leading international NF brand.</p>
+        <div class="sub">Desalination rate at 10 bar</div>
+        <div class="bar-row"><span>HUAXIN</span><div class="bar-track"><span class="bar-fill" style="width:57.4%"></span></div><b>95.74%</b></div>
+        <div class="bar-row"><span>Int’l brand</span><div class="bar-track"><span class="bar-fill alt" style="width:61.2%"></span></div><b>96.12%</b></div>
+        <div class="sub">Desalination rate at 15 bar</div>
+        <div class="bar-row"><span>HUAXIN</span><div class="bar-track"><span class="bar-fill" style="width:65.7%"></span></div><b>96.57%</b></div>
+        <div class="bar-row"><span>Int’l brand</span><div class="bar-track"><span class="bar-fill alt" style="width:68.3%"></span></div><b>96.83%</b></div>
+        <p class="scale">Bars span 90–100%. Result: HUAXIN trails the benchmark by less than 0.4 percentage points.</p>
+      </div>
+      <!-- Field test 2 -->
+      <div class="chart" id="ft-2">
+        <h4>Field Test 2 · Middle East groundwater</h4>
+        <p class="ctx">Conductivity <b>1,998 µS/cm</b>. <a href="#product-hx-hq">HUAXIN HQ drinking water NF membrane</a> vs. a leading international NF brand.</p>
+        <div class="sub">Desalination rate at 5 bar</div>
+        <div class="bar-row"><span>HUAXIN</span><div class="bar-track"><span class="bar-fill" style="width:69.7%"></span></div><b>96.97%</b></div>
+        <div class="bar-row"><span>Int’l brand</span><div class="bar-track"><span class="bar-fill alt" style="width:48.2%"></span></div><b>94.82%</b></div>
+        <div class="sub">Desalination rate at 10 bar</div>
+        <div class="bar-row"><span>HUAXIN</span><div class="bar-track"><span class="bar-fill" style="width:78.7%"></span></div><b>97.87%</b></div>
+        <div class="bar-row"><span>Int’l brand</span><div class="bar-track"><span class="bar-fill alt" style="width:62.9%"></span></div><b>96.29%</b></div>
+        <p class="scale">Bars span 90–100%. Result: HUAXIN leads by 2.2 points at 5 bar and 1.6 points at 10 bar.</p>
+      </div>
+      <!-- Field test 3 -->
+      <div class="chart" id="ft-3" style="grid-column:1/-1">
+        <h4>Field Test 3 · Landfill leachate, zero-liquid-discharge system</h4>
+        <p class="ctx">A highly challenging feed. <a href="#product-hx-sw">HUAXIN seawater desalination RO element (HX-SW-8040-400)</a> vs. a leading international seawater RO brand.</p>
+        <div class="grid g2" style="gap:28px">
+          <div>
+            <div class="sub">First stage · influent 20,700 µS/cm</div>
+            <div class="bar-row"><span>HUAXIN</span><div class="bar-track"><span class="bar-fill" style="width:34%"></span></div><b>93.40%</b></div>
+            <div class="bar-row"><span>Int’l brand</span><div class="bar-track"><span class="bar-fill alt" style="width:31.2%"></span></div><b>93.12%</b></div>
+          </div>
+          <div>
+            <div class="sub">Second stage · influent 41,250 µS/cm</div>
+            <div class="bar-row"><span>HUAXIN</span><div class="bar-track"><span class="bar-fill" style="width:42%"></span></div><b>94.20%</b></div>
+            <div class="bar-row"><span>Int’l brand</span><div class="bar-track"><span class="bar-fill alt" style="width:28%"></span></div><b>92.80%</b></div>
+          </div>
+        </div>
+        <p class="scale">Bars span 90–100%. Result: HUAXIN leads by 0.3 points in stage one and 1.4 points in stage two.</p>
+      </div>
+    </div>
+
+    <h3 class="subhead" id="long-term">Long-Term Operation</h3>
+    <p>Four documented installations in high-salinity, high-hardness, high-fouling environments with frequent high-intensity chemical cleaning.</p>
+
+    <!-- Case 1 -->
+    <article class="case" id="case-1">
+      <div class="case-head"><span class="tag">Case 1 · Mine water reuse</span><h3>HUAXIN Membranes for High-Salinity Mine Water Reuse</h3></div>
+      <div class="case-body">
+        <dl class="meta">
+          <div><dt>Customer</dt><dd>Phase I RO System, Mine Water Reuse Plant, Ningdong, Ningxia</dd></div>
+          <div><dt>Membrane</dt><dd><a href="#product-hx-bwfr">HUAXIN Brackish Water Anti-Pollution Membrane (HX-BWFR-8040-400)</a></dd></div>
+          <div><dt>Benchmark</dt><dd>A well-known domestic membrane brand</dd></div>
+        </dl>
+        <div class="kpis">
+          <div class="kpi"><b>99.62%</b><span>HUAXIN stable salt rejection</span></div>
+          <div class="kpi alt"><b>99.10%</b><span>Comparison membrane, stable period</span></div>
+          <div class="kpi"><b>693 days</b><span>Operating record on the trend chart</span></div>
+          <div class="kpi"><b>30,000 t/d</b><span>Daily permeate volume</span></div>
+        </div>
+        <div class="two-tbl">
+          <div class="table-wrap"><table class="spec"><caption>Feed water quality</caption>
+            <thead><tr><th>Parameter</th><th class="n">Concentration (mg/L)</th></tr></thead>
+            <tbody>
+              <tr><td>Ca²⁺</td><td class="n">1,510</td></tr><tr><td>Mg²⁺</td><td class="n">1,440</td></tr>
+              <tr><td>Na⁺</td><td class="n">3,500</td></tr><tr><td>SO₄²⁻</td><td class="n">7,300</td></tr>
+              <tr><td>Cl⁻</td><td class="n">4,900</td></tr><tr><td>pH</td><td class="n">7.95</td></tr>
+              <tr><td>TDS</td><td class="n">14,047</td></tr>
+            </tbody></table></div>
+          <div>
+            <div class="table-wrap"><table class="spec"><caption>Operating conditions</caption>
+              <thead><tr><th>Parameter</th><th class="n">Value</th></tr></thead>
+              <tbody>
+                <tr><td>Daily permeate volume</td><td class="n">30,000 tons/day</td></tr>
+                <tr><td>Recovery rate</td><td class="n">60%</td></tr>
+                <tr><td>First-stage RO operating pressure, summer</td><td class="n">29.1 kgf/cm²</td></tr>
+                <tr><td>First-stage RO operating pressure, winter</td><td class="n">35.1 kgf/cm²</td></tr>
+              </tbody></table></div>
+            <p class="table-note">The source prints the pressure unit as “kg”; read here as kgf/cm².</p>
+          </div>
+        </div>
+        <p class="narr">Under identical long-term conditions, the HUAXIN element held a stable rejection of <strong>about 99.62%</strong>, against 99.10% for the comparison membrane in its stable period. After high-intensity alkaline cleaning and prolonged use, the comparison membrane fell below 99%, while the HUAXIN membrane kept its performance throughout. This demonstrates long-term durability in conditions of high salinity, high hardness, severe fouling and frequent high-intensity cleaning.</p>
+      </div>
+    </article>
+
+    <!-- Case 2 -->
+    <article class="case" id="case-2">
+      <div class="case-head"><span class="tag">Case 2 · Mine water reuse</span><h3>HUAXIN Membranes for High-Salinity Mine Water Reuse</h3></div>
+      <div class="case-body">
+        <dl class="meta">
+          <div><dt>Customer</dt><dd>Phase II RO System, Mine Water Reuse Plant, Ningdong, Ningxia</dd></div>
+          <div><dt>Membrane</dt><dd><a href="#product-hx-sw">HUAXIN Seawater Desalination RO Membrane (HX-SW-8040-400)</a></dd></div>
+          <div><dt>Comparison</dt><dd>A well-known Sino-American joint venture brand</dd></div>
+        </dl>
+        <div class="grid g2" style="gap:24px">
+          <div class="chart" style="box-shadow:none">
+            <h4>Membrane weight before and after operation</h4>
+            <p class="ctx">Kilograms per element. A large weight gain reflects accumulated fouling.</p>
+            <div class="sub">HUAXIN</div>
+            <div class="bar-row"><span>Before</span><div class="bar-track"><span class="bar-fill" style="width:38.3%"></span></div><b>15.3 kg</b></div>
+            <div class="bar-row"><span>After</span><div class="bar-track"><span class="bar-fill" style="width:40.3%"></span></div><b>16.1 kg</b></div>
+            <div class="sub">Comparison membrane</div>
+            <div class="bar-row"><span>Before</span><div class="bar-track"><span class="bar-fill alt" style="width:38%"></span></div><b>15.2 kg</b></div>
+            <div class="bar-row"><span>After</span><div class="bar-track"><span class="bar-fill alt" style="width:94%"></span></div><b>37.6 kg</b></div>
+            <p class="scale">Bars span 0–40 kg.</p>
+          </div>
+          <div class="kpis" style="align-content:start">
+            <div class="kpi"><b>&gt; 99.3%</b><span>HUAXIN salt rejection, sustained</span></div>
+            <div class="kpi"><b>+0.8 kg</b><span>HUAXIN weight change over 525 days</span></div>
+            <div class="kpi alt"><b>+22.4 kg</b><span>Comparison weight change, same conditions</span></div>
+            <div class="kpi"><b>30–35 bar</b><span>Operating pressure</span></div>
+          </div>
+        </div>
+        <p class="narr">Feed water: conductivity 40,000 µS/cm, Ca²⁺ 2,516 mg/L, Mg²⁺ 2,400 mg/L, SO₄²⁻ 12,160 mg/L. Even after multiple cycles of intensive acid and alkaline cleaning, the HUAXIN membrane kept high rejection and operational stability with <strong>no significant increase in membrane weight</strong>. The comparison membrane showed continuous performance degradation and a noticeable weight increase under the same conditions.</p>
+      </div>
+    </article>
+
+    <!-- Case 3 -->
+    <article class="case" id="case-3">
+      <div class="case-head"><span class="tag">Case 3 · Mine water reuse</span><h3>HUAXIN Membranes for High-Salinity Mine Water Reuse</h3></div>
+      <div class="case-body">
+        <dl class="meta">
+          <div><dt>Customer</dt><dd>Phase II RO System, Mine Water Reuse Plant, Ningdong, Ningxia</dd></div>
+          <div><dt>Membrane</dt><dd><a href="#product-hx-sw">HUAXIN Seawater Desalination RO Membrane (HX-SW-8040-400)</a></dd></div>
+          <div><dt>Comparison</dt><dd>A well-known Sino-American joint venture brand</dd></div>
+        </dl>
+        <div class="notice"><b>Customer outcome:</b> after long-term use and high recognition by the customer, a further large-scale replacement with HUAXIN membranes followed.</div>
+        <div class="kpis">
+          <div class="kpi"><b>&gt; 99.3%</b><span>Salt rejection held under 40,000 µS/cm feed</span></div>
+          <div class="kpi"><b>174 days</b><span>Window of the head-to-head rejection trend</span></div>
+        </div>
+        <p class="narr">Over extended operation, the HUAXIN element showed better performance and stability than the joint-venture brand. After repeated intensive acid and alkaline cleanings it retained high rejection and operational stability, with no significant membrane weight increase, whereas the comparison membrane degraded steadily. The result underlines durability in harsh environments marked by high salinity, high hardness, severe fouling and frequent high-intensity chemical cleaning.</p>
+      </div>
+    </article>
+
+    <!-- Case 4 -->
+    <article class="case" id="case-4">
+      <div class="case-head"><span class="tag">Case 4 · Zero liquid discharge</span><h3>HUAXIN Membranes for Industrial Zero-Liquid Discharge</h3></div>
+      <div class="case-body">
+        <dl class="meta">
+          <div><dt>Customer</dt><dd>A zero-discharge industrial water treatment plant in Ningxia</dd></div>
+          <div><dt>Membrane</dt><dd><a href="#product-hx-sw">HUAXIN Seawater Desalination RO Membrane (HX-SW-8040-400)</a></dd></div>
+          <div><dt>Feedwater conductivity</dt><dd>~23,000 µS/cm</dd></div>
+          <div><dt>Comparison</dt><dd>A top international brand seawater desalination membrane element</dd></div>
+        </dl>
+        <div class="kpis">
+          <div class="kpi"><b>99.36%</b><span>HUAXIN average salt rejection</span></div>
+          <div class="kpi alt"><b>99.02%</b><span>Comparison, stable salt rejection</span></div>
+          <div class="kpi"><b>367 days</b><span>Operating record on the trend chart</span></div>
+          <div class="kpi"><b>&gt; 30 bar</b><span>Operating pressure</span></div>
+        </div>
+        <p class="narr">Under feedwater conductivity of about 23,000 µS/cm, the HUAXIN element showed progressively improving performance against a leading international seawater element. As operating time increased, its rejection stabilized at a level consistently above the comparison. The results indicate that HUAXIN performs <strong>on par with the leading international brand</strong> and shows advantages in long-term use.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================ 06 CONTACT ============================ -->
+<section class="section alt" id="contact" aria-labelledby="contact-h">
+  <div class="container">
+    <div class="contact">
+      <div>
+        <div class="eyebrow-light">Chapter 06</div>
+        <h2 id="contact-h">Talk to the HUAXIN team</h2>
+        <p style="margin-top:14px">Need a system design review, a quotation, or a recommendation between <a href="#product-hx-sw">HX-SW</a>, <a href="#product-hx-bwfr">HX-BWFR</a> and <a href="#product-hx-hq">HX-HQ</a>? Our team will help you select the right membrane for your water.</p>
+        <p style="margin-top:22px"><a class="btn btn-light" href="mailto:service@huaxinmembrane.com?subject=HUAXIN%20Membrane%20enquiry" style="color:var(--obsidian)">Email the team</a></p>
+      </div>
+      <dl>
+        <div><dt>Company</dt><dd>Huaxin Nano (Beijing) Technology Co., Ltd</dd></div>
+        <div><dt>Address</dt><dd>Tsinghua Tongfang Science and Technology Building, Courtyard 1, Wangzhuang Road, Haidian District, Beijing, China</dd></div>
+        <div><dt>VIP line</dt><dd>0537-2367239 &nbsp;·&nbsp; Mr. Hei, <a href="tel:+8618995132334">+86 18995132334</a></dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:service@huaxinmembrane.com">service@huaxinmembrane.com</a></dd></div>
+        <div><dt>Web</dt><dd><a href="https://www.huaxinmembrane.com" rel="noopener">www.huaxinmembrane.com</a></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PART B ================================ -->
+<section id="datasheets" aria-labelledby="ds-h" class="page-start">
+  <div class="container">
+    <div class="part-head">
+      <div class="eyebrow">Part B</div>
+      <h2 id="ds-h">Product Datasheets</h2>
+      <p class="lead" style="max-width:720px">One datasheet per product line, each with key features, technical specifications, use cases and compliance notes.</p>
+      <nav class="ds-index" aria-label="Datasheet index">
+        <a href="#product-hx-xlp"><b>HX-XLP</b><span>Extra Low Pressure RO</span></a>
+        <a href="#product-hx-lp"><b>HX-LP</b><span>Low Pressure RO</span></a>
+        <a href="#product-hx-bw"><b>HX-BW</b><span>Brackish Water RO</span></a>
+        <a href="#product-hx-bwfr"><b>HX-BWFR</b><span>Anti-Fouling RO</span></a>
+        <a href="#product-hx-sw"><b>HX-SW</b><span>Seawater RO</span></a>
+        <a href="#product-hx-hq"><b>HX-HQ</b><span>Drinking Water NF</span></a>
+        <a href="#product-hx-bm"><b>HX-BM</b><span>Salt Separation NF</span></a>
+        <a href="#product-hx-mbr"><b>HX-MBR</b><span>Membrane Bioreactor</span></a>
+        <a href="#product-hx-uf"><b>HX-UF</b><span>Column Ultrafiltration</span></a>
+      </nav>
+    </div>
+
+<!-- ========================= DATASHEET 01 · XLP ======================= -->
+<article class="datasheet" id="product-hx-xlp" aria-labelledby="h-xlp">
+  <div class="ds-top"><a class="back-link" href="#toc">← Back to Master Manual</a><span class="ds-count">Datasheet 01 / 09</span></div>
+  <header class="ds-hero">
+    <span class="tag">Reverse Osmosis</span>
+    <h2 id="h-xlp">HX-XLP</h2>
+    <p class="full">Extra Low Pressure RO Membrane Element</p>
+    <p class="tagline">Energy-efficient, high-flux industrial extra-low-pressure RO membrane.</p>
+    <div class="hero-stats">
+      <div><b>99.0%</b><span>Stable salt rejection</span></div>
+      <div><b>&lt; 1,000 ppm</b><span>Feed water salinity</span></div>
+      <div><b>3</b><span>Models in 4040 and 8040 formats</span></div>
+      <div><b>4.1 MPa</b><span>Max. operating pressure</span></div>
+    </div>
+  </header>
+  <div class="ds-body">
+    <div class="ds-intro">
+      <figure class="ds-fig"><svg viewBox="0 0 400 240" role="img" aria-label="Illustration of a spiral-wound RO element"><use href="#art-element" width="400" height="240"/></svg><figcaption>Image placeholder · replace with a high-resolution product photo</figcaption></figure>
+      <div>
+        <h3 class="ds-h">Key Features</h3>
+        <ul class="checks">
+          <li>High permeate flow at ultra-low operating pressure</li>
+          <li>Significantly reduces energy and system operating costs</li>
+          <li>Stable salt rejection of 99.0% at 500 ppm NaCl and 100 psi (0.69 MPa)</li>
+          <li>Three models across 4040 and 8040 element formats</li>
+        </ul>
+      </div>
+    </div>
+    <section aria-labelledby="s-xlp"><h3 class="ds-h" id="s-xlp">Technical Specifications</h3>
+      <div class="table-wrap"><table class="spec">
+        <thead><tr><th>Model</th><th class="n">Effective area, ft² (m²)</th><th class="n">Permeate flow, GPD (m³/d)</th><th class="n">Stable salt rejection</th></tr></thead>
+        <tbody>
+          <tr><td><b>XLP-4040-100</b></td><td class="n">100 (9.3)</td><td class="n">2,200 (8.3)</td><td class="n hl">99.0%</td></tr>
+          <tr><td><b>XLP-8040-400</b></td><td class="n">400 (37.2)</td><td class="n">9,500 (35.9)</td><td class="n hl">99.0%</td></tr>
+          <tr><td><b>XLP-8040-440</b></td><td class="n">440 (40.9)</td><td class="n">10,500 (39.7)</td><td class="n hl">99.0%</td></tr>
+        </tbody></table></div>
+      <div class="table-note"><ol><li>Test conditions: 500 ppm NaCl, 100 psi (0.69 MPa), 77 °F (25 °C), 15% recovery, pH 7–8.</li><li>Permeate flow of a single element may vary within ±20%.</li></ol></div>
+    </section>
+    <section aria-labelledby="o-xlp"><h3 class="ds-h" id="o-xlp">Operating Limits</h3>
+      <div class="table-wrap"><table class="spec"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody>
+        <tr><td class="k">Maximum operating pressure</td><td>4.1 MPa</td></tr>
+        <tr><td class="k">Maximum feed flow rate</td><td>16 gpm (3.6 m³/h) for 4040 · 75 gpm (17.0 m³/h) for 8040</td></tr>
+        <tr><td class="k">Maximum feed water temperature</td><td>45 °C</td></tr>
+        <tr><td class="k">Maximum feed water SDI (silt density index)</td><td>5</td></tr>
+        <tr><td class="k">Maximum free chlorine concentration in feed</td><td>&lt; 0.1 ppm</td></tr>
+        <tr><td class="k">Continuous operating pH range</td><td>2–11</td></tr>
+        <tr><td class="k">pH range for short-term cleaning (30 min)</td><td>1–13</td></tr>
+        <tr><td class="k">Maximum pressure drop per element</td><td>15 psi (0.10 MPa)</td></tr>
+      </tbody></table></div>
+    </section>
+    <section aria-labelledby="u-xlp"><h3 class="ds-h" id="u-xlp">Use Cases</h3>
+      <p class="muted">For feed water with salinity below 1,000 ppm:</p>
+      <ul class="usecases">
+        <li>Food and beverage process water</li><li>Drinking water purification</li><li>Second-stage RO systems</li>
+        <li>Ultrapure water in electronics</li><li>Seawater and municipal water post-treatment</li>
+      </ul>
+    </section>
+    <section aria-labelledby="c-xlp"><h3 class="ds-h" id="c-xlp">Compliance &amp; Certifications</h3>
+      <div class="table-wrap"><table class="spec"><tbody>
+        <tr><td class="k">Performance rating basis</td><td>500 ppm NaCl · 100 psi · 25 °C · 15% recovery · pH 7–8</td></tr>
+        <tr><td class="k">Flow tolerance</td><td>±20% per element</td></tr>
+        <tr><td class="k">Product certifications</td><td><span class="pend">Not stated in manual</span> Request current documentation from HUAXIN.</td></tr>
+        <tr><td class="k">Brand owner</td><td>Huaxin Nano (Beijing) Technology Co., Ltd</td></tr>
+      </tbody></table></div>
+    </section>
+  </div>
+  <footer class="ds-foot"><a class="back-link" href="#toc">← Back to Master Manual</a><div class="ds-pn"><a href="#product-hx-lp">Next: HX-LP →</a></div></footer>
+</article>
+
+<!-- ========================= DATASHEET 02 · LP ======================== -->
+<article class="datasheet" id="product-hx-lp" aria-labelledby="h-lp">
+  <div class="ds-top"><a class="back-link" href="#toc">← Back to Master Manual</a><span class="ds-count">Datasheet 02 / 09</span></div>
+  <header class="ds-hero">
+    <span class="tag">Reverse Osmosis</span>
+    <h2 id="h-lp">HX-LP</h2>
+    <p class="full">Low Pressure RO Membrane Element</p>
+    <p class="tagline">Energy-saving, high-permeate industrial low-pressure RO membrane.</p>
+    <div class="hero-stats">
+      <div><b>99.3%</b><span>Stable salt rejection</span></div>
+      <div><b>&lt; 2,000 ppm</b><span>Feed water salinity</span></div>
+      <div><b>3</b><span>Models in 4040 and 8040 formats</span></div>
+      <div><b>4.1 MPa</b><span>Max. operating pressure</span></div>
+    </div>
+  </header>
+  <div class="ds-body">
+    <div class="ds-intro">
+      <figure class="ds-fig"><svg viewBox="0 0 400 240" role="img" aria-label="Illustration of a spiral-wound RO element"><use href="#art-element" width="400" height="240"/></svg><figcaption>Image placeholder · replace with a high-resolution product photo</figcaption></figure>
+      <div>
+        <h3 class="ds-h">Key Features</h3>
+        <ul class="checks">
+          <li>Excellent chemical-cleaning tolerance for repeated acid and alkali cleaning cycles</li>
+          <li>Long service life</li>
+          <li>Significantly reduced energy consumption under low-pressure operation</li>
+          <li>High permeate flow and salt rejection at low operating pressure</li>
+        </ul>
+      </div>
+    </div>
+    <section aria-labelledby="s-lp"><h3 class="ds-h" id="s-lp">Technical Specifications</h3>
+      <div class="table-wrap"><table class="spec">
+        <thead><tr><th>Model</th><th class="n">Effective area, ft² (m²)</th><th class="n">Permeate flow, GPD (m³/d)</th><th class="n">Stable salt rejection</th></tr></thead>
+        <tbody>
+          <tr><td><b>LP-4040-100</b></td><td class="n">100 (9.3)</td><td class="n">2,400 (9.1)</td><td class="n hl">99.3%</td></tr>
+          <tr><td><b>LP-8040-400</b></td><td class="n">400 (37.2)</td><td class="n">10,500 (39.7)</td><td class="n hl">99.3%</td></tr>
+          <tr><td><b>LP-8040-440</b></td><td class="n">440 (40.9)</td><td class="n">11,500 (43.5)</td><td class="n hl">99.3%</td></tr>
+        </tbody></table></div>
+      <div class="table-note"><ol><li>Test conditions: 1,500 ppm NaCl, 150 psi (1.03 MPa), 77 °F (25 °C), 15% recovery, pH 7–8.</li><li>Permeate flow of a single element may vary within ±20%.</li></ol></div>
+    </section>
+    <section aria-labelledby="o-lp"><h3 class="ds-h" id="o-lp">Operating Limits</h3>
+      <div class="table-wrap"><table class="spec"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody>
+        <tr><td class="k">Maximum operating pressure</td><td>4.1 MPa</td></tr>
+        <tr><td class="k">Maximum feed flow rate</td><td>16 gpm (3.6 m³/h) for 4040 · 75 gpm (17.0 m³/h) for 8040</td></tr>
+        <tr><td class="k">Maximum feed water temperature</td><td>45 °C</td></tr>
+        <tr><td class="k">Maximum feed water SDI (silt density index)</td><td>5</td></tr>
+        <tr><td class="k">Maximum free chlorine concentration in feed</td><td>&lt; 0.1 ppm</td></tr>
+        <tr><td class="k">Continuous operating pH range</td><td>2–11</td></tr>
+        <tr><td class="k">pH range for short-term cleaning (30 min)</td><td>1–13</td></tr>
+        <tr><td class="k">Maximum pressure drop per element</td><td>15 psi (0.10 MPa)</td></tr>
+      </tbody></table></div>
+    </section>
+    <section aria-labelledby="u-lp"><h3 class="ds-h" id="u-lp">Use Cases</h3>
+      <p class="muted">For feed water with salinity below 2,000 ppm:</p>
+      <ul class="usecases">
+        <li>Low-salinity deep well water</li><li>Surface water</li><li>Boiler feedwater</li><li>Brackish water</li>
+      </ul>
+    </section>
+    <section aria-labelledby="c-lp"><h3 class="ds-h" id="c-lp">Compliance &amp; Certifications</h3>
+      <div class="table-wrap"><table class="spec"><tbody>
+        <tr><td class="k">Performance rating basis</td><td>1,500 ppm NaCl · 150 psi · 25 °C · 15% recovery · pH 7–8</td></tr>
+        <tr><td class="k">Flow tolerance</td><td>±20% per element</td></tr>
+        <tr><td class="k">Product certifications</td><td><span class="pend">Not stated in manual</span> Request current documentation from HUAXIN.</td></tr>
+        <tr><td class="k">Brand owner</td><td>Huaxin Nano (Beijing) Technology Co., Ltd</td></tr>
+      </tbody></table></div>
+    </section>
+  </div>
+  <footer class="ds-foot"><a class="back-link" href="#toc">← Back to Master Manual</a><div class="ds-pn"><a href="#product-hx-xlp">← Previous: HX-XLP</a><a href="#product-hx-bw">Next: HX-BW →</a></div></footer>
+</article>
+
+<!-- ========================= DATASHEET 03 · BW ======================== -->
+<article class="datasheet" id="product-hx-bw" aria-labelledby="h-bw">
+  <div class="ds-top"><a class="back-link" href="#toc">← Back to Master Manual</a><span class="ds-count">Datasheet 03 / 09</span></div>
+  <header class="ds-hero">
+    <span class="tag">Reverse Osmosis</span>
+    <h2 id="h-bw">HX-BW</h2>
+    <p class="full">Brackish Water RO Membrane Element</p>
+    <p class="tagline">High-rejection, high-performance industrial-grade brackish water RO membrane.</p>
+    <div class="hero-stats">
+      <div><b>99.5%</b><span>Stable salt rejection</span></div>
+      <div><b>&lt; 5,000 ppm</b><span>Feed water salinity</span></div>
+      <div><b>3</b><span>Models in 4040 and 8040 formats</span></div>
+      <div><b>pH 2–11</b><span>Continuous operation</span></div>
+    </div>
+  </header>
+  <div class="ds-body">
+    <div class="ds-intro">
+      <figure class="ds-fig"><svg viewBox="0 0 400 240" role="img" aria-label="Illustration of a spiral-wound RO element"><use href="#art-element" width="400" height="240"/></svg><figcaption>Image placeholder · replace with a high-resolution product photo</figcaption></figure>
+      <div>
+        <h3 class="ds-h">Key Features</h3>
+        <ul class="checks">
+          <li>Low operating pressure with high permeate flow</li>
+          <li>Excellent salt rejection</li>
+          <li>Broad pH tolerance range and strong chemical resistance</li>
+          <li>Easy and effective cleaning</li>
+        </ul>
+        <p class="muted" style="margin-top:16px;font-size:.92rem">Working with heavy fouling? See <a href="#product-hx-bwfr">HX-BWFR</a>.</p>
+      </div>
+    </div>
+    <section aria-labelledby="s-bw"><h3 class="ds-h" id="s-bw">Technical Specifications</h3>
+      <div class="table-wrap"><table class="spec">
+        <thead><tr><th>Model</th><th class="n">Effective area, ft² (m²)</th><th class="n">Permeate flow, GPD (m³/d)</th><th class="n">Stable salt rejection</th></tr></thead>
+        <tbody>
+          <!-- Source printed 8.3 m2 for 100 ft2; corrected to 9.3 (100 ft2 = 9.29 m2). -->
+          <tr><td><b>BW-4040-100</b></td><td class="n">100 (9.3)</td><td class="n">2,400 (9.1)</td><td class="n hl">99.5%</td></tr>
+          <tr><td><b>BW-8040-400</b></td><td class="n">400 (37.2)</td><td class="n">10,500 (39.7)</td><td class="n hl">99.5%</td></tr>
+          <tr><td><b>BW-8040-440</b></td><td class="n">440 (40.9)</td><td class="n">11,500 (43.5)</td><td class="n hl">99.5%</td></tr>
+        </tbody></table></div>
+      <div class="table-note"><ol><li>Test conditions: 2,000 ppm NaCl, 225 psi (15.5 bar), 77 °F (25 °C), 15% recovery, pH 7–8.</li><li>Permeate flow of a single element may vary within ±20%.</li></ol></div>
+    </section>
+    <section aria-labelledby="o-bw"><h3 class="ds-h" id="o-bw">Operating Limits</h3>
+      <div class="table-wrap"><table class="spec"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody>
+        <tr><td class="k">Maximum operating pressure</td><td>4.1 MPa</td></tr>
+        <tr><td class="k">Maximum feed flow rate</td><td>16 gpm (3.6 m³/h) for 4040 · 75 gpm (17.0 m³/h) for 8040</td></tr>
+        <tr><td class="k">Maximum feed water temperature</td><td>45 °C</td></tr>
+        <tr><td class="k">Maximum feed water SDI (silt density index)</td><td>5</td></tr>
+        <tr><td class="k">Maximum free chlorine concentration in feed</td><td>&lt; 0.1 ppm</td></tr>
+        <tr><td class="k">Continuous operating pH range</td><td>2–11</td></tr>
+        <tr><td class="k">pH range for short-term cleaning (30 min)</td><td>1–13</td></tr>
+        <tr><td class="k">Maximum pressure drop per element</td><td>15 psi (0.10 MPa)</td></tr>
+      </tbody></table></div>
+    </section>
+    <section aria-labelledby="u-bw"><h3 class="ds-h" id="u-bw">Use Cases</h3>
+      <p class="muted">For feed water with salinity below 5,000 ppm:</p>
+      <ul class="usecases">
+        <li>Moderately saline deep well water</li><li>Surface water</li><li>Boiler make-up water</li><li>Brackish water</li>
+      </ul>
+    </section>
+    <section aria-labelledby="c-bw"><h3 class="ds-h" id="c-bw">Compliance &amp; Certifications</h3>
+      <div class="table-wrap"><table class="spec"><tbody>
+        <tr><td class="k">Performance rating basis</td><td>2,000 ppm NaCl · 225 psi · 25 °C · 15% recovery · pH 7–8</td></tr>
+        <tr><td class="k">Flow tolerance</td><td>±20% per element</td></tr>
+        <tr><td class="k">Product certifications</td><td><span class="pend">Not stated in manual</span> Request current documentation from HUAXIN.</td></tr>
+        <tr><td class="k">Brand owner</td><td>Huaxin Nano (Beijing) Technology Co., Ltd</td></tr>
+      </tbody></table></div>
+    </section>
+  </div>
+  <footer class="ds-foot"><a class="back-link" href="#toc">← Back to Master Manual</a><div class="ds-pn"><a href="#product-hx-lp">← Previous: HX-LP</a><a href="#product-hx-bwfr">Next: HX-BWFR →</a></div></footer>
+</article>
+
+<!-- ======================== DATASHEET 04 · BWFR ======================= -->
+<article class="datasheet" id="product-hx-bwfr" aria-labelledby="h-bwfr">
+  <div class="ds-top"><a class="back-link" href="#toc">← Back to Master Manual</a><span class="ds-count">Datasheet 04 / 09</span></div>
+  <header class="ds-hero">
+    <span class="tag">Reverse Osmosis · Anti-Fouling</span>
+    <h2 id="h-bwfr">HX-BWFR</h2>
+    <p class="full">Anti-Fouling RO Membrane Element</p>
+    <p class="tagline">High-desalination, high-performance, industry-standard contamination-resistant reverse osmosis element.</p>
+    <div class="hero-stats">
+      <div><b>99.5%</b><span>Stable salt rejection</span></div>
+      <div><b>&lt; 5,000 ppm</b><span>Feed water salinity</span></div>
+      <div><b>2</b><span>Models (4040 and 8040)</span></div>
+      <div><b>99.62%</b><span>Field rejection, 693-day case</span></div>
+    </div>
+  </header>
+  <div class="ds-body">
+    <div class="ds-intro">
+      <figure class="ds-fig"><svg viewBox="0 0 400 240" role="img" aria-label="Illustration of a spiral-wound RO element"><use href="#art-element" width="400" height="240"/></svg><figcaption>Image placeholder · replace with a high-resolution product photo</figcaption></figure>
+      <div>
+        <h3 class="ds-h">Key Features</h3>
+        <ul class="checks">
+          <li>Low operating pressure with high pollution resistance</li>
+          <li>High water production and good desalination performance</li>
+          <li>Broad pH tolerance and strong chemical resistance</li>
+          <li>Easy, effective cleaning</li>
+        </ul>
+      </div>
+    </div>
+    <section aria-labelledby="s-bwfr"><h3 class="ds-h" id="s-bwfr">Technical Specifications</h3>
+      <div class="table-wrap"><table class="spec">
+        <thead><tr><th>Model</th><th class="n">Effective area, ft² (m²)</th><th class="n">Permeate flow, GPD (m³/d)</th><th class="n">Stable salt rejection</th></tr></thead>
+        <tbody>
+          <!-- Source printed 8.3 m2 for 100 ft2; corrected to 9.3 (100 ft2 = 9.29 m2). -->
+          <tr><td><b>BWFR-4040-100</b></td><td class="n">100 (9.3)</td><td class="n">2,400 (9.1)</td><td class="n hl">99.5%</td></tr>
+          <tr><td><b>BWFR-8040-400</b></td><td class="n">400 (37.2)</td><td class="n">10,500 (39.7)</td><td class="n hl">99.5%</td></tr>
+        </tbody></table></div>
+      <div class="table-note"><ol><li>Test conditions: 2,000 ppm NaCl, 225 psi (15.5 bar), 77 °F (25 °C), 15% recovery, pH 7–8.</li><li>Permeate flow of a single element may vary within ±20%.</li></ol></div>
+    </section>
+    <section aria-labelledby="o-bwfr"><h3 class="ds-h" id="o-bwfr">Operating Limits</h3>
+      <div class="table-wrap"><table class="spec"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody>
+        <tr><td class="k">Maximum operating pressure</td><td>4.1 MPa</td></tr>
+        <tr><td class="k">Maximum feed flow rate</td><td>16 gpm (3.6 m³/h) for 4040 · 75 gpm (17.0 m³/h) for 8040</td></tr>
+        <tr><td class="k">Maximum feed water temperature</td><td>45 °C</td></tr>
+        <tr><td class="k">Maximum feed water SDI (silt density index)</td><td>5</td></tr>
+        <tr><td class="k">Maximum free chlorine concentration in feed</td><td>&lt; 0.1 ppm</td></tr>
+        <tr><td class="k">Continuous operating pH range</td><td>2–11</td></tr>
+        <tr><td class="k">pH range for short-term cleaning (30 min)</td><td>1–13</td></tr>
+        <tr><td class="k">Maximum pressure drop per element</td><td>15 psi (0.10 MPa)</td></tr>
+      </tbody></table></div>
+    </section>
+    <section aria-labelledby="u-bwfr"><h3 class="ds-h" id="u-bwfr">Use Cases</h3>
+      <p class="muted">For feed water with salinity below 5,000 ppm, especially in high-fouling conditions:</p>
+      <ul class="usecases">
+        <li>Moderately saline deep well water</li><li>Surface water</li><li>Boiler feedwater</li><li>Brackish water</li>
+        <li>High-salinity mine water reuse<small>See <a href="#case-1">Case 1</a></small></li>
+      </ul>
+    </section>
+    <section aria-labelledby="f-bwfr"><h3 class="ds-h" id="f-bwfr">Field Performance</h3>
+      <div class="kpis">
+        <div class="kpi"><b>99.62%</b><span>HX-BWFR-8040-400 stable salt rejection</span></div>
+        <div class="kpi alt"><b>99.10%</b><span>Comparison domestic brand</span></div>
+        <div class="kpi"><b>30,000 t/d</b><span>Permeate volume at 60% recovery</span></div>
+      </div>
+      <p class="table-note">Phase I RO system, mine water reuse plant, Ningdong, Ningxia; feed TDS 14,047 mg/L. The comparison membrane fell below 99% after high-intensity alkaline cleaning. <a href="#case-1">Read the full case →</a></p>
+    </section>
+    <section aria-labelledby="c-bwfr"><h3 class="ds-h" id="c-bwfr">Compliance &amp; Certifications</h3>
+      <div class="table-wrap"><table class="spec"><tbody>
+        <tr><td class="k">Performance rating basis</td><td>2,000 ppm NaCl · 225 psi · 25 °C · 15% recovery · pH 7–8</td></tr>
+        <tr><td class="k">Flow tolerance</td><td>±20% per element</td></tr>
+        <tr><td class="k">Product certifications</td><td><span class="pend">Not stated in manual</span> Request current documentation from HUAXIN.</td></tr>
+        <tr><td class="k">Brand owner</td><td>Huaxin Nano (Beijing) Technology Co., Ltd</td></tr>
+      </tbody></table></div>
+    </section>
+  </div>
+  <footer class="ds-foot"><a class="back-link" href="#toc">← Back to Master Manual</a><div class="ds-pn"><a href="#product-hx-bw">← Previous: HX-BW</a><a href="#product-hx-sw">Next: HX-SW →</a></div></footer>
+</article>
+
+<!-- ========================= DATASHEET 05 · SW ======================== -->
+<article class="datasheet" id="product-hx-sw" aria-labelledby="h-sw">
+  <div class="ds-top"><a class="back-link" href="#toc">← Back to Master Manual</a><span class="ds-count">Datasheet 05 / 09</span></div>
+  <header class="ds-hero">
+    <span class="tag">Reverse Osmosis · Seawater</span>
+    <h2 id="h-sw">HX-SW</h2>
+    <p class="full">Seawater Desalination RO Membrane Element</p>
+    <p class="tagline">High-rejection, high-flux and durable seawater desalination RO membrane.</p>
+    <div class="hero-stats">
+      <div><b>99.7%</b><span>Stable salt rejection</span></div>
+      <div><b>&gt; 10,000 ppm</b><span>Feed water salinity</span></div>
+      <div><b>3</b><span>Models in 4040 and 8040 formats</span></div>
+      <div><b>8.0 MPa</b><span>Max. operating pressure</span></div>
+    </div>
+  </header>
+  <div class="ds-body">
+    <div class="ds-intro">
+      <figure class="ds-fig"><svg viewBox="0 0 400 240" role="img" aria-label="Illustration of a spiral-wound RO element"><use href="#art-element" width="400" height="240"/></svg><figcaption>Image placeholder · replace with a high-resolution product photo</figcaption></figure>
+      <div>
+        <h3 class="ds-h">Key Features</h3>
+        <ul class="checks">
+          <li>High salt rejection, high boron rejection and high flux</li>
+          <li>No oxidative post-treatment is used to artificially boost initial performance, ensuring consistently high performance over long-term operation</li>
+          <li>Effective chemical cleaning over a wide pH range (1–13)</li>
+          <li>Strong emphasis on biofouling resistance for seawater desalination and extraction of high-value by-products</li>
+        </ul>
+      </div>
+    </div>
+    <section aria-labelledby="s-sw"><h3 class="ds-h" id="s-sw">Technical Specifications</h3>
+      <div class="table-wrap"><table class="spec">
+        <thead><tr><th>Model</th><th class="n">Effective area, ft² (m²)</th><th class="n">Permeate flow, GPD (m³/d)</th><th class="n">Stable salt rejection</th></tr></thead>
+        <tbody>
+          <tr><td><b>SW-4040-100</b></td><td class="n">100 (9.3)</td><td class="n">1,800 (6.8)</td><td class="n hl">99.7%</td></tr>
+          <tr><td><b>SW-8040-400</b></td><td class="n">400 (37.2)</td><td class="n">7,500 (28.4)</td><td class="n hl">99.7%</td></tr>
+          <tr><td><b>SW-8040-440</b></td><td class="n">440 (40.9)</td><td class="n">8,200 (31.0)</td><td class="n hl">99.7%</td></tr>
+        </tbody></table></div>
+      <div class="table-note"><ol><li>Test conditions: 32,000 ppm NaCl, 800 psi (5.5 MPa), 77 °F (25 °C), 8% recovery, pH 7–8.</li><li>Permeate flow of a single element may vary within ±20%.</li></ol></div>
+    </section>
+    <section aria-labelledby="o-sw"><h3 class="ds-h" id="o-sw">Operating Limits</h3>
+      <div class="table-wrap"><table class="spec"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody>
+        <tr><td class="k">Maximum operating pressure</td><td>8.0 MPa</td></tr>
+        <tr><td class="k">Maximum feed flow rate</td><td>16 gpm (3.6 m³/h) for 4040 · 75 gpm (17.0 m³/h) for 8040</td></tr>
+        <tr><td class="k">Maximum feed water temperature</td><td>45 °C</td></tr>
+        <tr><td class="k">Maximum feed water SDI (silt density index)</td><td>5</td></tr>
+        <tr><td class="k">Maximum free chlorine concentration in feed</td><td>&lt; 0.1 ppm</td></tr>
+        <tr><td class="k">Continuous operating pH range</td><td>2–11</td></tr>
+        <tr><td class="k">pH range for short-term cleaning (30 min)</td><td>1–13</td></tr>
+        <tr><td class="k">Maximum pressure drop per element</td><td>15 psi (0.10 MPa)</td></tr>
+      </tbody></table></div>
+    </section>
+    <section aria-labelledby="u-sw"><h3 class="ds-h" id="u-sw">Use Cases</h3>
+      <p class="muted">For feed water with salinity above 10,000 ppm:</p>
+      <ul class="usecases">
+        <li>Seawater desalination<small>Including extraction of high-value by-products</small></li>
+        <li>High-salinity deep well water</li>
+        <li>Industrial brine</li>
+        <li>High-salinity mine water reuse<small>See <a href="#case-2">Case 2</a> and <a href="#case-3">Case 3</a></small></li>
+        <li>Industrial zero liquid discharge<small>See <a href="#case-4">Case 4</a></small></li>
+        <li>Landfill leachate ZLD systems<small>See <a href="#ft-3">Field Test 3</a></small></li>
+      </ul>
+    </section>
+    <section aria-labelledby="f-sw"><h3 class="ds-h" id="f-sw">Field Performance</h3>
+      <div class="two-tbl">
+        <div class="table-wrap"><table class="spec"><caption>Head-to-head results</caption>
+          <thead><tr><th>Test</th><th class="n">HUAXIN</th><th class="n">Comparison</th></tr></thead>
+          <tbody>
+            <tr><td>Landfill leachate ZLD, stage 1 (20,700 µS/cm)</td><td class="n hl">93.40%</td><td class="n">93.12%</td></tr>
+            <tr><td>Landfill leachate ZLD, stage 2 (41,250 µS/cm)</td><td class="n hl">94.20%</td><td class="n">92.80%</td></tr>
+            <tr><td>Industrial ZLD plant, average (~23,000 µS/cm)</td><td class="n hl">99.36%</td><td class="n">99.02%</td></tr>
+          </tbody></table></div>
+        <div class="table-wrap"><table class="spec"><caption>Mine water, Phase II RO (Ningdong, Ningxia)</caption>
+          <thead><tr><th>Item</th><th class="n">Value</th></tr></thead>
+          <tbody>
+            <tr><td>Feed conductivity</td><td class="n">40,000 µS/cm</td></tr>
+            <tr><td>Ca²⁺ / Mg²⁺ / SO₄²⁻</td><td class="n">2,516 / 2,400 / 12,160 mg/L</td></tr>
+            <tr><td>Operating pressure</td><td class="n">30–35 bar</td></tr>
+            <tr><td>Weight change, HUAXIN</td><td class="n hl">15.3 → 16.1 kg</td></tr>
+            <tr><td>Weight change, comparison</td><td class="n">15.2 → 37.6 kg</td></tr>
+          </tbody></table></div>
+      </div>
+      <p class="table-note">Comparison brands: a leading international seawater RO brand (leachate), a top international brand (ZLD plant) and a well-known Sino-American joint venture brand (mine water). These are field observations, not rated specifications. <a href="#cases">Read the full cases →</a></p>
+    </section>
+    <section aria-labelledby="c-sw"><h3 class="ds-h" id="c-sw">Compliance &amp; Certifications</h3>
+      <div class="table-wrap"><table class="spec"><tbody>
+        <tr><td class="k">Performance rating basis</td><td>32,000 ppm NaCl · 800 psi · 25 °C · 8% recovery · pH 7–8</td></tr>
+        <tr><td class="k">Flow tolerance</td><td>±20% per element</td></tr>
+        <tr><td class="k">Product certifications</td><td><span class="pend">Not stated in manual</span> Request current documentation from HUAXIN.</td></tr>
+        <tr><td class="k">Brand owner</td><td>Huaxin Nano (Beijing) Technology Co., Ltd</td></tr>
+      </tbody></table></div>
+    </section>
+  </div>
+  <footer class="ds-foot"><a class="back-link" href="#toc">← Back to Master Manual</a><div class="ds-pn"><a href="#product-hx-bwfr">← Previous: HX-BWFR</a><a href="#product-hx-hq">Next: HX-HQ →</a></div></footer>
+</article>
+
+<!-- ========================= DATASHEET 06 · HQ ======================== -->
+<article class="datasheet" id="product-hx-hq" aria-labelledby="h-hq">
+  <div class="ds-top"><a class="back-link" href="#toc">← Back to Master Manual</a><span class="ds-count">Datasheet 06 / 09</span></div>
+  <header class="ds-hero">
+    <span class="tag">Nanofiltration · Drinking Water</span>
+    <h2 id="h-hq">HX-HQ</h2>
+    <p class="full">High-Quality Drinking Water NF Membrane Element</p>
+    <p class="tagline">High-flux nanofiltration membrane for superior drinking water quality.</p>
+    <div class="hero-stats">
+      <div><b>&gt; 90%</b><span>Stable salt rejection</span></div>
+      <div><b>3</b><span>Models in 4040 and 8040 formats</span></div>
+      <div><b>4.1 MPa</b><span>Max. operating pressure</span></div>
+      <div><b>97.87%</b><span>Field desalination rate, 1,998 µS/cm at 10 bar</span></div>
+    </div>
+  </header>
+  <div class="ds-body">
+    <div class="ds-intro">
+      <figure class="ds-fig"><svg viewBox="0 0 400 240" role="img" aria-label="Illustration of a spiral-wound NF element"><use href="#art-element" width="400" height="240"/></svg><figcaption>Image placeholder · replace with a high-resolution product photo</figcaption></figure>
+      <div>
+        <h3 class="ds-h">Key Features</h3>
+        <ul class="checks">
+          <li>Effectively removes trace organic micropollutants, bacteria and viruses from source water</li>
+          <li>Retains beneficial minerals such as silica and strontium, enhancing taste and delivering premium drinking water</li>
+          <li>Field-tested against a leading international NF brand on Middle Eastern groundwater</li>
+        </ul>
+      </div>
+    </div>
+    <section aria-labelledby="s-hq"><h3 class="ds-h" id="s-hq">Technical Specifications</h3>
+      <div class="table-wrap"><table class="spec">
+        <thead><tr><th>Model</th><th class="n">Effective area, ft² (m²)</th><th class="n">Permeate flow, GPD (m³/d)</th><th class="n">Stable salt rejection (NaCl / MgSO₄)</th></tr></thead>
+        <tbody>
+          <tr><td><b>HQ-4040-100</b></td><td class="n">100 (9.3)</td><td class="n">2,200 (8.3)<sup>†</sup></td><td class="n hl">&gt; 90%</td></tr>
+          <tr><td><b>HQ-8040-400</b></td><td class="n">400 (37.2)</td><td class="n">10,500 (39.7)</td><td class="n hl">&gt; 90%</td></tr>
+          <tr><td><b>HQ-8040-440</b></td><td class="n">440 (40.9)</td><td class="n">11,500 (43.5)</td><td class="n hl">&gt; 90%</td></tr>
+        </tbody></table></div>
+      <div class="table-note"><ol><li>Test conditions: 2,000 ppm NaCl, 100 psi (6.9 bar), 77 °F (25 °C), 15% recovery, pH 7–8.</li><li>Permeate flow of a single element may vary within ±20%.</li><li>The manual lists a single “&gt; 90” value spanning its NaCl and MgSO₄ rejection columns.</li></ol>
+      <p><sup></sup> </p></div>
+    </section>
+    <section aria-labelledby="o-hq"><h3 class="ds-h" id="o-hq">Operating Limits</h3>
+      <div class="table-wrap"><table class="spec"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody>
+        <tr><td class="k">Maximum operating pressure</td><td>4.1 MPa</td></tr>
+        <tr><td class="k">Maximum feed flow rate</td><td>16 gpm (3.6 m³/h) for 4040 · 75 gpm (17.0 m³/h) for 8040</td></tr>
+        <tr><td class="k">Maximum feed water temperature</td><td>45 °C</td></tr>
+        <tr><td class="k">Maximum feed water SDI (silt density index)</td><td>5</td></tr>
+        <tr><td class="k">Maximum free chlorine concentration in feed</td><td>&lt; 0.1 ppm</td></tr>
+        <tr><td class="k">Continuous operating pH range</td><td>2–11</td></tr>
+        <tr><td class="k">pH range for short-term cleaning (30 min)</td><td>1–13</td></tr>
+        <tr><td class="k">Maximum pressure drop per element</td><td>15 psi (0.10 MPa)</td></tr>
+      </tbody></table></div>
+    </section>
+    <section aria-labelledby="u-hq"><h3 class="ds-h" id="u-hq">Use Cases</h3>
+      <p class="muted">Deep purification of municipal water sourced from surface or well water:</p>
+      <ul class="usecases">
+        <li>Hardness softening</li>
+        <li>Color and odor removal</li>
+        <li>Taste improvement</li>
+        <li>Saline and brackish groundwater treatment<small>Middle East field tests below</small></li>
+      </ul>
+    </section>
+    <section aria-labelledby="f-hq"><h3 class="ds-h" id="f-hq">Field Performance</h3>
+      <div class="table-wrap"><table class="spec wide">
+        <thead><tr><th>Test</th><th>Operating pressure</th><th class="n">HUAXIN HQ</th><th class="n">Int’l NF brand</th><th class="n">Difference</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="2"><a href="#ft-1">Field Test 1</a><br><small class="muted">Coastal groundwater, 6,450 µS/cm</small></td><td>10 bar</td><td class="n">95.74%</td><td class="n">96.12%</td><td class="n">−0.38 pt</td></tr>
+          <tr><td>15 bar</td><td class="n">96.57%</td><td class="n">96.83%</td><td class="n">−0.26 pt</td></tr>
+          <tr><td rowspan="2"><a href="#ft-2">Field Test 2</a><br><small class="muted">Groundwater, 1,998 µS/cm</small></td><td>5 bar</td><td class="n hl">96.97%</td><td class="n">94.82%</td><td class="n hl">+2.15 pt</td></tr>
+          <tr><td>10 bar</td><td class="n hl">97.87%</td><td class="n">96.29%</td><td class="n hl">+1.58 pt</td></tr>
+        </tbody></table></div>
+      <p class="table-note">Test 1 shows HUAXIN within 0.4 points of the benchmark; Test 2 shows a lead of 1.6–2.2 points. Benchmark is a leading international NF membrane brand. <a href="#field-tests">See the charts →</a></p>
+    </section>
+    <section aria-labelledby="c-hq"><h3 class="ds-h" id="c-hq">Compliance &amp; Certifications</h3>
+      <div class="table-wrap"><table class="spec"><tbody>
+        <tr><td class="k">Performance rating basis</td><td>2,000 ppm NaCl · 100 psi (6.9 bar) · 25 °C · 15% recovery · pH 7–8</td></tr>
+        <tr><td class="k">Flow tolerance</td><td>±20% per element</td></tr>
+        <tr><td class="k">Drinking-water certifications</td><td><span class="pend">Not stated in manual</span> Request current documentation from HUAXIN before specifying for potable use.</td></tr>
+        <tr><td class="k">Brand owner</td><td>Huaxin Nano (Beijing) Technology Co., Ltd</td></tr>
+      </tbody></table></div>
+    </section>
+  </div>
+  <footer class="ds-foot"><a class="back-link" href="#toc">← Back to Master Manual</a><div class="ds-pn"><a href="#product-hx-sw">← Previous: HX-SW</a><a href="#product-hx-bm">Next: HX-BM →</a></div></footer>
+</article>
+
+<!-- ========================= DATASHEET 07 · BM ======================== -->
+<article class="datasheet" id="product-hx-bm" aria-labelledby="h-bm">
+  <div class="ds-top"><a class="back-link" href="#toc">← Back to Master Manual</a><span class="ds-count">Datasheet 07 / 09</span></div>
+  <header class="ds-hero">
+    <span class="tag">Nanofiltration · Industrial</span>
+    <h2 id="h-bm">HX-BM</h2>
+    <p class="full">Industrial Salt Separation NF Membrane Element</p>
+    <p class="tagline">High-selectivity nanofiltration for salt separation and organic concentration. Also listed as “Industrial Desalting NF Elements.”</p>
+    <div class="hero-stats">
+      <div><b>98%</b><span>MgSO₄ rejection</span></div>
+      <div><b>5–30%</b><span>NaCl rejection</span></div>
+      <div><b>&gt; 200 Da</b><span>Organics retained</span></div>
+      <div><b>3</b><span>Models in 4040 and 8040 formats</span></div>
+    </div>
+  </header>
+  <div class="ds-body">
+    <div class="ds-intro">
+      <figure class="ds-fig"><svg viewBox="0 0 400 240" role="img" aria-label="Illustration of a spiral-wound NF element"><use href="#art-element" width="400" height="240"/></svg><figcaption>Image placeholder · replace with a high-resolution product photo</figcaption></figure>
+      <div>
+        <h3 class="ds-h">Key Features</h3>
+        <ul class="checks">
+          <li>Retains organic compounds with molecular weight above 200 Da, and divalent salts</li>
+          <li>Allows partial passage of monovalent salts, enabling precise separation</li>
+          <li>High selectivity for salt/organic separation and solute concentration</li>
+        </ul>
+      </div>
+    </div>
+    <section aria-labelledby="s-bm"><h3 class="ds-h" id="s-bm">Technical Specifications</h3>
+      <div class="table-wrap"><table class="spec">
+        <thead><tr><th>Model</th><th class="n">Effective area, ft² (m²)</th><th class="n">Permeate flow, GPD (m³/d)</th><th class="n">NaCl rejection</th><th class="n">MgSO₄ rejection</th></tr></thead>
+        <tbody>
+          <tr><td><b>BM-4040-100</b></td><td class="n">100 (9.3)</td><td class="n">2,400 (9.1)</td><td class="n hl">5–30%</td><td class="n hl">98%</td></tr>
+          <tr><td><b>BM-8040-400</b></td><td class="n">400 (37.2)</td><td class="n">9,500 (35.9)</td><td class="n hl">5–30%</td><td class="n hl">98%</td></tr>
+          <tr><td><b>BM-8040-440</b></td><td class="n">440 (40.9)</td><td class="n">10,500 (39.7)</td><td class="n hl">5–30%</td><td class="n hl">98%</td></tr>
+        </tbody></table></div>
+      <div class="table-note"><ol><li>Test conditions: 2,000 ppm NaCl / MgSO₄, 100 psi (6.9 bar), 77 °F (25 °C), 15% recovery, pH 7–8.</li><li>Water produced by a single element may vary, but will not be more than 15% lower than the stated value.</li></ol></div>
+    </section>
+    <section aria-labelledby="o-bm"><h3 class="ds-h" id="o-bm">Operating Limits</h3>
+      <div class="table-wrap"><table class="spec"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody>
+        <tr><td class="k">Maximum operating pressure</td><td>4.1 MPa</td></tr>
+        <tr><td class="k">Maximum feed flow rate</td><td>16 gpm (3.6 m³/h) for 4040 · 75 gpm (17.0 m³/h) for 8040</td></tr>
+        <tr><td class="k">Maximum feed water temperature</td><td>45 °C</td></tr>
+        <tr><td class="k">Maximum feed water SDI (silt density index)</td><td>5</td></tr>
+        <tr><td class="k">Maximum free chlorine concentration in feed</td><td>&lt; 0.1 ppm</td></tr>
+        <tr><td class="k">Continuous operating pH range</td><td>2–11</td></tr>
+        <tr><td class="k">pH range for short-term cleaning (30 min)</td><td>1–13</td></tr>
+        <tr><td class="k">Maximum pressure drop per element</td><td>15 psi (0.10 MPa)</td></tr>
+      </tbody></table></div>
+    </section>
+    <section aria-labelledby="u-bm"><h3 class="ds-h" id="u-bm">Use Cases</h3>
+      <ul class="usecases">
+        <li>Salt and organic compound separation</li><li>Concentration of valuable solutes</li><li>Recovery of specific components in industrial processes</li>
+      </ul>
+    </section>
+    <section aria-labelledby="c-bm"><h3 class="ds-h" id="c-bm">Compliance &amp; Certifications</h3>
+      <div class="table-wrap"><table class="spec"><tbody>
+        <tr><td class="k">Performance rating basis</td><td>2,000 ppm NaCl / MgSO₄ · 100 psi · 25 °C · 15% recovery · pH 7–8</td></tr>
+        <tr><td class="k">Flow tolerance</td><td>Not more than 15% below the stated value</td></tr>
+        <tr><td class="k">Product certifications</td><td><span class="pend">Not stated in manual</span> Request current documentation from HUAXIN.</td></tr>
+        <tr><td class="k">Brand owner</td><td>Huaxin Nano (Beijing) Technology Co., Ltd</td></tr>
+      </tbody></table></div>
+    </section>
+  </div>
+  <footer class="ds-foot"><a class="back-link" href="#toc">← Back to Master Manual</a><div class="ds-pn"><a href="#product-hx-hq">← Previous: HX-HQ</a><a href="#product-hx-mbr">Next: HX-MBR →</a></div></footer>
+</article>
+
+<!-- ========================= DATASHEET 08 · MBR ======================= -->
+<article class="datasheet" id="product-hx-mbr" aria-labelledby="h-mbr">
+  <div class="ds-top"><a class="back-link" href="#toc">← Back to Master Manual</a><span class="ds-count">Datasheet 08 / 09</span></div>
+  <header class="ds-hero">
+    <span class="tag">Membrane Bioreactor</span>
+    <h2 id="h-mbr">HX-MBR</h2>
+    <p class="full">HUAXIN Membrane Bioreactor (MBR) Modules</p>
+    <p class="tagline">Stainless-steel-frame membrane modules for municipal and industrial biological wastewater treatment.</p>
+    <div class="hero-stats">
+      <div><b>150–400</b><span>m³/d treatment capacity</span></div>
+      <div><b>6</b><span>Module models</span></div>
+      <div><b>&gt; 100 mm</b><span>Spacing between membrane sheets</span></div>
+      <div><b>400–1,620 m²</b><span>Membrane area range</span></div>
+    </div>
+  </header>
+  <div class="ds-body">
+    <div class="ds-intro">
+      <figure class="ds-fig"><svg viewBox="0 0 400 240" role="img" aria-label="Illustration of an MBR module with a steel frame and membrane sheets"><use href="#art-mbr" width="400" height="240"/></svg><figcaption>Image placeholder · replace with a high-resolution product photo</figcaption></figure>
+      <div>
+        <h3 class="ds-h">Key Features</h3>
+        <ul class="checks">
+          <li>Stainless steel frame instead of traditional plastic pipes</li>
+          <li>Over 100 mm between membrane sheets for smooth backwash airflow to the top fibers</li>
+          <li>Reduced fiber tangling and lower cleaning frequency</li>
+          <li>Six standard modules for 150 to 400 m³/d</li>
+        </ul>
+      </div>
+    </div>
+    <section aria-labelledby="s-mbr"><h3 class="ds-h" id="s-mbr">Technical Specifications</h3>
+      <div class="table-wrap"><table class="spec wide">
+        <thead>
+          <tr><th rowspan="2" class="n">Capacity (m³/d)</th><th rowspan="2">Model</th><th rowspan="2">Dimensions L×W×H (mm)</th><th rowspan="2" class="n">Membranes (pcs)</th><th colspan="2" class="group" style="text-align:center">Membrane area (m²)</th></tr>
+          <tr><th class="n">2.0 mm outer dia.</th><th class="n">1.0 mm outer dia.</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="n">150</td><td><b>HX-MBR-2020</b></td><td>2180×580×2400</td><td class="n">20</td><td class="n">400</td><td class="n">600</td></tr>
+          <!-- Source printed 480 for the 1.0 mm area; every other row is 1.5x the 2.0 mm value, so 560 x 1.5 = 840. Footnoted below. -->
+          <tr><td class="n">200</td><td><b>HX-MBR-2028</b></td><td>2800×580×2400</td><td class="n">28</td><td class="n">560</td><td class="n">840<sup>†</sup></td></tr>
+          <tr><td class="n">250</td><td><b>HX-MBR-2034</b></td><td>1780×1380×2400</td><td class="n">34</td><td class="n">680</td><td class="n">1,020</td></tr>
+          <tr><td class="n">300</td><td><b>HX-MBR-2042</b></td><td>2180×1380×2400</td><td class="n">42</td><td class="n">840</td><td class="n">1,260</td></tr>
+          <tr><td class="n">350</td><td><b>HX-MBR-2048</b></td><td>2500×1380×2400</td><td class="n">48</td><td class="n">960</td><td class="n">1,440</td></tr>
+          <tr><td class="n">400</td><td><b>HX-MBR-2054</b></td><td>2800×1380×2400</td><td class="n">54</td><td class="n">1,080</td><td class="n">1,620</td></tr>
+        </tbody></table></div>
+      <p class="table-note"><sup>†</sup> The source manual prints 480 for this cell, which breaks the 1.5× ratio shown by every other model (560 × 1.5 = 840). The corrected value is shown; please confirm with HUAXIN.</p>
+    </section>
+    <section aria-labelledby="u-mbr"><h3 class="ds-h" id="u-mbr">Use Cases</h3>
+      <ul class="usecases"><li>Municipal wastewater biological treatment</li><li>Industrial wastewater biological treatment</li></ul>
+    </section>
+    <section aria-labelledby="c-mbr"><h3 class="ds-h" id="c-mbr">Compliance &amp; Certifications</h3>
+      <div class="table-wrap"><table class="spec"><tbody>
+        <tr><td class="k">Rated basis</td><td>Treatment capacity per module model, as listed above</td></tr>
+        <tr><td class="k">Product certifications</td><td><span class="pend">Not stated in manual</span> Request current documentation from HUAXIN.</td></tr>
+        <tr><td class="k">Brand owner</td><td>Huaxin Nano (Beijing) Technology Co., Ltd</td></tr>
+      </tbody></table></div>
+    </section>
+  </div>
+  <footer class="ds-foot"><a class="back-link" href="#toc">← Back to Master Manual</a><div class="ds-pn"><a href="#product-hx-bm">← Previous: HX-BM</a><a href="#product-hx-uf">Next: HX-UF →</a></div></footer>
+</article>
+
+<!-- ========================= DATASHEET 09 · UF ======================== -->
+<article class="datasheet" id="product-hx-uf" aria-labelledby="h-uf">
+  <div class="ds-top"><a class="back-link" href="#toc">← Back to Master Manual</a><span class="ds-count">Datasheet 09 / 09</span></div>
+  <header class="ds-hero">
+    <span class="tag">Ultrafiltration</span>
+    <h2 id="h-uf">HX-UF</h2>
+    <p class="full">HUAXIN Column Ultrafiltration (UF) Module</p>
+    <p class="tagline">PVDF hollow-fiber ultrafiltration columns for water purification and wastewater treatment.</p>
+    <div class="hero-stats">
+      <div><b>&lt; 30 nm</b><span>Pore size</span></div>
+      <div><b>4</b><span>Models, 90–250 mm shell</span></div>
+      <div><b>pH 1–14</b><span>Applied pH range</span></div>
+      <div><b>5–45 °C</b><span>Operating temperature</span></div>
+    </div>
+  </header>
+  <div class="ds-body">
+    <div class="ds-intro">
+      <figure class="ds-fig"><svg viewBox="0 0 400 240" role="img" aria-label="Illustration of a UF column module"><use href="#art-uf" width="400" height="240"/></svg><figcaption>Image placeholder · replace with a high-resolution product photo</figcaption></figure>
+      <div>
+        <h3 class="ds-h">Key Features</h3>
+        <ul class="checks">
+          <li><b>Hollow-fiber structure</b>: high specific surface area improves membrane flux</li>
+          <li><b>PVDF membrane material</b>: excellent chemical resistance</li>
+          <li>Wide operating window: pH 1–14 and 5–45 °C</li>
+          <li>Full-flow or cross-flow filtration operating mode</li>
+        </ul>
+      </div>
+    </div>
+    <section aria-labelledby="s-uf"><h3 class="ds-h" id="s-uf">Technical Specifications</h3>
+      <div class="table-wrap"><table class="spec wide">
+        <thead><tr><th>Item</th><th>Unit</th><th class="n">HX-UF-90</th><th class="n">HX-UF-160</th><th class="n">HX-UF-200</th><th class="n">HX-UF-250</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Length</td><td>mm</td><td class="n">1,192</td><td class="n">1,500</td><td class="n">2,100</td><td class="n">1,715</td></tr>
+          <tr><td class="k">Shell diameter</td><td>mm</td><td class="n">90</td><td class="n">160</td><td class="n">200</td><td class="n">250</td></tr>
+          <tr><td class="k">Membrane area</td><td>m²</td><td class="n">10</td><td class="n">40</td><td class="n">60</td><td class="n">90</td></tr>
+          <tr><td class="k">Membrane material</td><td></td><td colspan="4">PVDF</td></tr>
+          <tr><td class="k">Fabrication method</td><td></td><td colspan="4">NIPS (non-solvent induced phase separation)</td></tr>
+          <tr><td class="k">Pore size</td><td>nm</td><td colspan="4">&lt; 30</td></tr>
+          <tr><td class="k">Bubble point pressure</td><td>kPa</td><td colspan="4">&gt; 30</td></tr>
+          <tr><td class="k">Fiber inner / outer diameter</td><td>mm</td><td colspan="4">0.8 inner · 1.2 outer</td></tr>
+          <tr><td class="k">Shell material</td><td></td><td colspan="4">UPVC</td></tr>
+        </tbody></table></div>
+    </section>
+    <section aria-labelledby="o-uf"><h3 class="ds-h" id="o-uf">Operation Parameters (Recommended Range)</h3>
+      <div class="table-wrap"><table class="spec wide">
+        <thead><tr><th>Item</th><th>Unit</th><th class="n">HX-UF-90</th><th class="n">HX-UF-160</th><th class="n">HX-UF-200</th><th class="n">HX-UF-250</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Initial permeate flow</td><td>t/h</td><td class="n">≥ 3.0</td><td class="n">≥ 5.0</td><td class="n">≥ 8.0</td><td class="n">≥ 10.0</td></tr>
+          <tr><td class="k">Design flux</td><td>t/h</td><td class="n">1–2</td><td class="n">2–3</td><td class="n">3–4</td><td class="n">4–5</td></tr>
+          <tr><td class="k">Operating temperature</td><td>°C</td><td colspan="4">5–45</td></tr>
+          <tr><td class="k">Applied pH range</td><td></td><td colspan="4">1–14</td></tr>
+          <tr><td class="k">Filtration mode</td><td></td><td colspan="4">Full-flow or cross-flow filtration</td></tr>
+        </tbody></table></div>
+    </section>
+    <section aria-labelledby="u-uf"><h3 class="ds-h" id="u-uf">Use Cases</h3>
+      <ul class="usecases">
+        <li>Surface water purification</li><li>Drinking water filtration</li><li>Industrial process water treatment</li>
+        <li>Municipal wastewater treatment</li><li>Industrial wastewater treatment</li>
+      </ul>
+    </section>
+    <section aria-labelledby="c-uf"><h3 class="ds-h" id="c-uf">Compliance &amp; Certifications</h3>
+      <div class="table-wrap"><table class="spec"><tbody>
+        <tr><td class="k">Rated basis</td><td>Recommended operating ranges as listed above</td></tr>
+        <tr><td class="k">Product certifications</td><td><span class="pend">Not stated in manual</span> Request current documentation from HUAXIN, especially for drinking-water use.</td></tr>
+        <tr><td class="k">Brand owner</td><td>Huaxin Nano (Beijing) Technology Co., Ltd</td></tr>
+      </tbody></table></div>
+    </section>
+  </div>
+  <footer class="ds-foot"><a class="back-link" href="#toc">← Back to Master Manual</a><div class="ds-pn"><a href="#product-hx-mbr">← Previous: HX-MBR</a><a href="#top">Back to cover ↑</a></div></footer>
+</article>
+
+  </div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <div class="container">
+    <div><b>HUAXIN Membrane</b> · Refining Membrane Technology<br>Huaxin Nano (Beijing) Technology Co., Ltd</div>
+    <div><a href="mailto:service@huaxinmembrane.com">service@huaxinmembrane.com</a> · <a href="https://www.huaxinmembrane.com" rel="noopener">www.huaxinmembrane.com</a></div>
+    <div><a href="#toc">Contents</a> · <a href="#datasheets">Datasheets</a> · <a href="#top">Top ↑</a></div>
+  </div>
+</footer>
+</body>
+</html>
